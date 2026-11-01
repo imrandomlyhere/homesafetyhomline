@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- Game content (catalog entries, calls) lives in src/game/data.ts; UI in src/routes/index.tsx — keep content data-driven so new days are just data.
