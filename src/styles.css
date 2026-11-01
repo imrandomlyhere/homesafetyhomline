@@ -185,3 +185,8 @@
 .btn98 { border-radius: 0; height: auto; white-space: normal; color: var(--foreground); }
 .caller-page { max-width: 1440px; margin: 0 auto; }
 .caller-header { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 16px; padding: 16px 4px; color: var(--win-light); border-bottom: 2px solid var(--win-light); }
+.loading-overlay { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px; cursor: wait; }
+.loading-track { height: 18px; padding: 3px; overflow: hidden; box-shadow: inset 1px 1px var(--win-dark), inset -1px -1px var(--win-light); }
+.loading-block { width: 30%; height: 12px; background: var(--title-a); animation: disk-load 1s linear infinite; }
+@keyframes disk-load { from { transform: translateX(-100%); } to { transform: translateX(330%); } }
+@media (prefers-reduced-motion: reduce) { .loading-block { animation: none; width: 60%; } }

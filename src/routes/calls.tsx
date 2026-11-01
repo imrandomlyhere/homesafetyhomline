@@ -4,8 +4,8 @@ import { CALLS } from "@/game/data";
 
 export const Route = createFileRoute("/calls")({
   validateSearch: (search: Record<string, unknown>) => ({
-    day: CALLS[Number(search.day)] ? Number(search.day) : 1,
-    employee: typeof search.employee === "string" ? search.employee : "0451",
+    day: CALLS[Number(search['day'])] ? Number(search['day']) : 1,
+    employee: typeof search['employee'] === "string" ? search['employee'] : "0451",
   }),
   head: () => ({ meta: [
     { title: "Call Center — Home Safety Hotline" },
