@@ -1,8 +1,21 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RetroIcon } from "@/game/retro-icon";
-import { CALLS, ENTRIES, getCatalog, type Entry } from "@/game/data";
+import { CALLS, ENTRIES, getCatalog, getSymptomQuestions, type Entry } from "@/game/data";
+import { FILE_LOAD_MS, CALL_LOAD_MS, QUESTION_LOAD_MS, textProgress } from "@/game/loading";
+import { createRetroAudio, type SoundKind } from "@/game/sounds";
+
+function LoadingText({ duration }: { duration: number }) {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const started = Date.now();
+    const timer = setInterval(() => setProgress(Math.min(100, (Date.now() - started) / duration * 100)), 150);
+    return () => clearInterval(timer);
+  }, [duration]);
+  return <div className="ascii-progress font-term"><span aria-hidden="true">{textProgress(progress)}</span><span>{Math.floor(progress)}%</span></div>;
+}
 
 function Win({ title, children, onClose, className = "" }: { title: string; children: ReactNode; onClose?: () => void; className?: string }) {
   return (
@@ -35,6 +48,39 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const [loading, setLoading] = useState<string | null>(null);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [connecting, setConnecting] = useState(callerPage);
+  const [asked, setAsked] = useState<string[]>([]);
+  const [waitingQuestion, setWaitingQuestion] = useState<string | null>(null);
+  const [soundOn, setSoundOn] = useState(false);
+  const [audioError, setAudioError] = useState("");
+  const audio = useRef<ReturnType<typeof createRetroAudio> | null>(null);
+  const play = (kind: SoundKind) => { if (soundOn) audio.current?.play(kind); };
+  const toggleSound = () => {
+    try {
+      if (!audio.current) audio.current = createRetroAudio();
+      audio.current.setEnabled(!soundOn);
+      if (!soundOn) audio.current.play("computer");
+      setSoundOn(!soundOn);
+      setAudioError("");
+    } catch { setAudioError("Sound is unavailable in this browser."); }
+  };
+  useEffect(() => () => audio.current?.close(), []);
+
+  useEffect(() => {
+    if (!waitingQuestion) return;
+    const timer = setTimeout(() => {
+      setAsked((previous) => [...previous, waitingQuestion]);
+      setWaitingQuestion(null);
+    }, QUESTION_LOAD_MS);
+    return () => clearTimeout(timer);
+  }, [waitingQuestion]);
+
+  useEffect(() => {
+    if (!soundOn || (!loading && !connecting)) return;
+    const kind: SoundKind = connecting ? "phone" : loading?.startsWith("Connecting") ? "dialup" : "computer";
+    audio.current?.play(kind);
+    const timer = setInterval(() => audio.current?.play(kind), kind === "computer" ? 700 : 2200);
+    return () => clearInterval(timer);
+  }, [loading, connecting, soundOn]);
 
   const load = (label: string, action: () => void) => {
     if (loading) return;
@@ -48,13 +94,13 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
       pendingAction();
       setLoading(null);
       setPendingAction(null);
-    }, 1200);
+    }, FILE_LOAD_MS);
     return () => clearTimeout(timer);
   }, [pendingAction]);
 
   useEffect(() => {
     if (!connecting) return;
-    const timer = setTimeout(() => setConnecting(false), 1800);
+    const timer = setTimeout(() => setConnecting(false), CALL_LOAD_MS);
     return () => clearTimeout(timer);
   }, [connecting]);
 
@@ -72,6 +118,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
 
   const calls = CALLS[day] ?? [];
   const call = calls[callIdx];
+  const questions = call ? getSymptomQuestions(call) : [];
   const catalog = getCatalog(day);
   const available = ENTRIES.filter((e) => e.day <= day).sort((a, b) => a.name.localeCompare(b.name));
 
@@ -87,6 +134,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const startDay = (d: number) => { setDay(d); setPhase("clockin"); setCallIdx(0); setScore(0); setResult(null); setPick(""); setOpen(null); };
 
   const submit = () => {
+    play("computer");
     if (!call) return;
     const entry = ENTRIES.find((e) => e.id === call.answer);
     if (!entry) return;
@@ -96,6 +144,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   };
 
   const next = () => {
+    setAsked([]); setWaitingQuestion(null); play("computer");
     setResult(null); setPick("");
     const h = 9 + Math.round(((callIdx + 1) / calls.length) * 8);
     setTime(`${h > 12 ? h - 12 : h}:00 ${h >= 12 ? "PM" : "AM"}`);
@@ -147,13 +196,23 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
             <div className="grid lg:grid-cols-2 gap-4 items-start">
             <Win title={`Incoming Call — Line 1 (${callIdx + 1}/${calls.length})`}>
               <div className="bg-term font-term text-xl p-3 h-64 overflow-auto">
-                {connecting ? <div role="status"><p>&gt; LINE 1: CONNECTING...</p><p>&gt; Waiting for incoming call...</p><div className="loading-track mt-4"><div className="loading-block" /></div></div> : <>
+                {connecting ? <div role="status"><p>&gt; LINE 1: CONNECTING...</p><p>&gt; Waiting for incoming call...</p><LoadingText duration={CALL_LOAD_MS} /></div> : <>
                 <p>&gt; CALLER: {call.caller}</p>
                 <p>&gt; LOCATION: {call.location}</p>
                 <p>&gt; CONNECTED...</p>
                 {call.transcript.map((t, i) => <p key={i} className="mt-2">"{t}"</p>)}
                 </>}
               </div>
+              {!connecting && <div className="mt-3 text-sm">
+                <h2 className="font-bold mb-2">Symptom questions</h2>
+                <div className="space-y-2">
+                  {questions.map((q) => <div key={q.id}>
+                    <Button variant="ghost" className="btn98 question-button w-full justify-start text-left" disabled={Boolean(result) || Boolean(waitingQuestion) || asked.includes(q.id)} onClick={() => { play("computer"); setWaitingQuestion(q.id); }}>{q.question}{asked.includes(q.id) ? " (asked)" : ""}</Button>
+                    {asked.includes(q.id) && <p className="bevel-in p-2 mt-1"><strong>{call.caller}:</strong> "{q.reply}"</p>}
+                  </div>)}
+                  {waitingQuestion && <p role="status" className="font-term text-lg">&gt; Caller is responding...</p>}
+                </div>
+              </div>}
               {!result ? (
                 <div className="mt-3 space-y-2">
                   <label className="text-sm">Identify pest:</label>
@@ -161,7 +220,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
                     <option value="">-- select --</option>
                     {available.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
                   </select>
-                  <Button variant="ghost" className="btn98" disabled={!pick || connecting} onClick={submit}>Submit & Advise Caller</Button>
+                  <Button variant="ghost" className="btn98" disabled={!pick || connecting || Boolean(waitingQuestion)} onClick={submit}>Submit & Advise Caller</Button>
                 </div>
               ) : (
                 <div className="mt-3 space-y-2 text-sm">
@@ -214,9 +273,10 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
           </div>
         )}
       </div>
-      {loading && <div className="loading-overlay" role="status" aria-live="polite"><Win title="Please wait" className="w-80 max-w-full"><p className="text-sm mb-3">{loading}</p><div className="loading-track"><div className="loading-block" /></div></Win></div>}
+      {loading && <div className="loading-overlay" role="status" aria-live="polite"><Win title="Please wait" className="w-80 max-w-full"><p className="text-sm mb-3">{loading}</p><LoadingText duration={FILE_LOAD_MS} /></Win></div>}
       <div className="win flex justify-between items-center px-2 py-1 text-sm">
         <Button variant="ghost" className="btn98 font-bold !py-0">⊞ Start</Button>
+        <div className="flex items-center gap-2"><Button variant="ghost" className="btn98" onClick={toggleSound} aria-label={soundOn ? "Turn sound off" : "Turn sound on"} aria-pressed={soundOn} title={soundOn ? "Turn sound off" : "Turn sound on"}>{soundOn ? <Volume2 /> : <VolumeX />}<span className="text-xs">Sound {soundOn ? "on" : "off"}</span></Button>{audioError && <span role="status" className="text-xs">{audioError}</span>}</div>
         <span className="bevel-in px-2">{phase === "working" ? time : "12:00 AM"} · Y2K Ready</span>
       </div>
     </div>
