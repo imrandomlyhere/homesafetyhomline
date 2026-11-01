@@ -165,3 +165,23 @@
 .bg-new { background: var(--new); }
 .text-classified { color: var(--danger-red); }
 .bg-term { background: oklch(0.15 0 0); color: oklch(0.85 0.2 145); }
+
+:root {
+  --pixel-outline: oklch(0.18 0 0);
+  --pixel-folder: oklch(0.85 0.15 95);
+  --pixel-phone: oklch(0.62 0.13 155);
+  --pixel-ink: oklch(0.45 0.08 240);
+}
+.retro-icon { width: 40px; height: 40px; flex-shrink: 0; image-rendering: pixelated; }
+.retro-icon-small { width: 16px; height: 16px; }
+.pixel-outline { fill: var(--pixel-outline); }
+.pixel-folder { fill: var(--pixel-folder); }
+.pixel-light { fill: var(--win-light); }
+.pixel-phone { fill: var(--pixel-phone); }
+.pixel-ink { fill: var(--pixel-ink); }
+.desktop-icon, .file-icon { display: flex; flex-direction: column; width: 112px; height: 100px; gap: 8px; white-space: normal; font-size: 12px; text-align: center; border-radius: 0; }
+.desktop-icon { color: var(--win-light); }
+.desktop-icon svg, .file-icon svg { width: 40px; height: 40px; }
+.btn98 { border-radius: 0; height: auto; white-space: normal; color: var(--foreground); }
+.caller-page { max-width: 1440px; margin: 0 auto; }
+.caller-header { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 16px; padding: 16px 4px; color: var(--win-light); border-bottom: 2px solid var(--win-light); }
