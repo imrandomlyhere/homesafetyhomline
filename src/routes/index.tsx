@@ -49,8 +49,8 @@ function Game() {
     setSeen(JSON.parse(localStorage.getItem("hsh-seen") || "[]"));
   }, []);
 
-  const calls = CALLS[day];
-  const call = calls[callIdx];
+  const calls = CALLS[day] ?? [];
+  const call = calls[callIdx]!;
   const catalog = getCatalog(day);
   const available = ENTRIES.filter((e) => e.day <= day).sort((a, b) => a.name.localeCompare(b.name));
 
@@ -66,7 +66,6 @@ function Game() {
   const startDay = (d: number) => { setDay(d); setPhase("clockin"); setCallIdx(0); setScore(0); setResult(null); setPick(""); setOpen(null); };
 
   const submit = () => {
-    const entry = ENTRIES.find((e) => e.id === pick)!;
     const ok = pick === call.answer;
     if (ok) setScore((s) => s + 1);
     setResult({ ok, entry: ENTRIES.find((e) => e.id === call.answer)! });
