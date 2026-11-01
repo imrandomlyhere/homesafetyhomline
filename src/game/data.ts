@@ -131,6 +131,29 @@ export type Call = {
   answer: string;
 };
 
+export type SymptomQuestion = { id: string; question: string; reply: string };
+const SYMPTOMS: Record<string, [string, string, string]> = {
+  mole: ["Nobody's sick or hurt. It's just ruining the lawn.", "It's outside, under the front lawn. Those raised tunnels lead right up to the flower bed.", "I first noticed the mounds three mornings ago. There are fresh ones every day."],
+  rat: ["Nobody's been bitten, but I'm worried about the food it's gotten into.", "Mostly in the walls and wherever we keep food. I find droppings along the baseboards.", "About a week. The scratching is worst after midnight."],
+  mold: ["We've had coughing and headaches. It seems worse when we're in that damp room.", "Around the damp walls and ceiling. There's a musty smell and dark patches spreading.", "It started after a leak. The stains have kept growing since then."],
+  raccoon: ["Nobody's hurt. We haven't tried touching it, and I don't plan to.", "Up in the attic. There's a heavy animal moving around, and the trash outside is scattered.", "A few nights now. I hear it after dark, but it's quiet during the day."],
+  termite: ["Nobody's ill, but the floor feels soft near the damaged wood.", "The wooden doorframe and foundation. There are mud tubes and discarded little wings.", "We noticed the wings yesterday, but the wood might have been damaged for months."],
+  deskmoth: ["My eyes stung after it flew at me. There was brown dust all over my face.", "Inside my desk drawers. Paper and pencils are chewed up, and I hear fluttering.", "Several nights. Things disappear from the drawers while I'm asleep."],
+  mimic: ["I'm fine, but the dog won't eat. His eyes bulge and his legs bend backwards. He watches us all night.", "The dog stays in the hallway near the bedrooms. Sometimes his whimper sounds almost human.", "Four days. He looked normal before that, but now it's getting worse."],
+  commonsickle: ["Our cat and a child nearby are missing. Nobody here has been injured, but we're scared.", "By the furnace and heating vents. Whatever I saw was small, fast, and ran on two legs.", "The scratching started a week ago. Then the cat disappeared and the vents were torn open."],
+  pipesickle: ["My son's finger is badly injured. We're already at the ER, and the hamster is missing.", "Inside the kitchen drain. There are clicking sounds and ragged, chewed holes in the pipe.", "A few days of clicking, then the leak and the injury happened today."],
+};
+
+export function getSymptomQuestions(call: Call): SymptomQuestion[] {
+  const replies = SYMPTOMS[call.answer];
+  if (!replies) return [];
+  return [
+    { id: "health", question: "Has anyone felt sick, been hurt, or noticed unusual behavior?", reply: replies[0] },
+    { id: "location", question: "Where exactly is it happening, and what signs do you see?", reply: replies[1] },
+    { id: "duration", question: "When did it start, and is it getting worse?", reply: replies[2] },
+  ];
+}
+
 export const CALLS: Record<number, Call[]> = {
   1: [
     { caller: "Linda Parks", location: "Dayton, OH", answer: "mole",
