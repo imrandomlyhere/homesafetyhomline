@@ -1,4 +1,5 @@
 # Tasks
-- [ ] Replace modern emoji icons with pixel-style icons.
-- [ ] Group all days into one desktop folder and label locked files ACCESS DENIED.
-- [ ] Move the caller experience to its own page and verify a complete shift.
+- [x] Replace modern emoji icons with pixel-style icons.
+- [x] Group all days into one desktop folder and label locked files ACCESS DENIED.
+- [x] Move the caller experience to its own page and verify a complete shift.
+- [x] Add short loading waits for opening programs, files, and incoming calls.
