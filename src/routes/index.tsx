@@ -45,8 +45,15 @@ function Game() {
   const [time, setTime] = useState("9:00 AM");
 
   useEffect(() => {
-    setMaxDay(Number(localStorage.getItem("hsh-maxday") || 1));
-    setSeen(JSON.parse(localStorage.getItem("hsh-seen") || "[]"));
+    try {
+      const d = Number(localStorage.getItem("hsh-maxday") || 1);
+      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(d, 2) : 1);
+      const s = JSON.parse(localStorage.getItem("hsh-seen") || "[]");
+      setSeen(Array.isArray(s) ? s.filter((x) => typeof x === "string") : []);
+    } catch {
+      localStorage.removeItem("hsh-maxday");
+      localStorage.removeItem("hsh-seen");
+    }
   }, []);
 
   const calls = CALLS[day] ?? [];
