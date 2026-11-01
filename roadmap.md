@@ -3,3 +3,6 @@
 - [x] Group all days into one desktop folder and label locked files ACCESS DENIED.
 - [x] Move the caller experience to its own page and verify a complete shift.
 - [x] Add short loading waits for opening programs, files, and incoming calls.
+- [x] Add symptom follow-up questions and caller responses.
+- [x] Add optional dial-up, computer, and phone sounds.
+- [x] Lengthen loading and use advancing ASCII progress bars; verify the call flow.
