@@ -14,3 +14,5 @@
 - Symptom replies are data-driven in src/game/data.ts; question state resets between calls so caller details cannot leak into the next call.
 - Retro sounds use browser-only Web Audio created by an explicit sound-toggle click, default off; close the audio context on unmount.
 - Shared loading durations and ASCII progression live in src/game/loading.ts so every waiting screen uses the same timing rules.
+- Each shift selects one of three authored variants per scheduled pest on mount; transcripts and symptom replies travel together in src/game/data.ts so follow-ups cannot contradict that caller.
+- Daily scripted mail lives in src/game/mail.ts and the shared inbox in src/game/mailbox.tsx; delivery follows unlocked work days, not external email or network storage.
