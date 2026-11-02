@@ -4,7 +4,7 @@ import { DAY_DATES, getMail } from "./mail";
 import { RetroIcon } from "./retro-icon";
 
 export function Mailbox({ day }: { day: number }) {
-  const messages = getMail(day).toReversed();
+  const messages = getMail(day).reverse();
   const [selected, setSelected] = useState(messages[0]?.id ?? "");
   const [read, setRead] = useState<string[]>([]);
   const message = messages.find((mail) => mail.id === selected);
