@@ -1,8 +1,8 @@
 # Tasks
-- [ ] Add Day 3's five creatures and preserve a 30-file catalog.
-- [ ] Add three distinct call variations per pest and current-call symptom replies.
-- [ ] Add daily Casey mail, permission notices, jokes, and the Day 2 mystery message.
-- [ ] Verify unlocking Day 3, mail, and a complete Day 3 shift.
+- [x] Add Day 3's five creatures and preserve a 30-file catalog.
+- [x] Add three distinct call variations per pest and current-call symptom replies.
+- [x] Add daily Casey mail, permission notices, jokes, and the Day 2 mystery message.
+- [x] Verify unlocking Day 3, mail, and a complete Day 3 shift.
 - [x] Replace modern emoji icons with pixel-style icons.
 - [x] Group all days into one desktop folder and label locked files ACCESS DENIED.
 - [x] Move the caller experience to its own page and verify a complete shift.
