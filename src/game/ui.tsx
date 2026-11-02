@@ -3,7 +3,9 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RetroIcon } from "@/game/retro-icon";
-import { CALLS, ENTRIES, getCatalog, getSymptomQuestions, type Entry } from "@/game/data";
+import { CALLS, ENTRIES, getCatalog, getShiftCalls, getSymptomQuestions, type Entry } from "@/game/data";
+import { DAY_DATES, getMail, getNewEntryCount } from "@/game/mail";
+import { Mailbox } from "@/game/mailbox";
 import { FILE_LOAD_MS, CALL_LOAD_MS, QUESTION_LOAD_MS, textProgress } from "@/game/loading";
 import { createRetroAudio, type SoundKind } from "@/game/sounds";
 
@@ -36,6 +38,8 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const [maxDay, setMaxDay] = useState(1);
   const [day, setDay] = useState(initialDay);
   const [phase, setPhase] = useState<Phase>(callerPage ? "working" : "desktop");
+  const [shiftCalls, setShiftCalls] = useState(CALLS[initialDay] ?? []);
+  const [showMail, setShowMail] = useState(false);
   const [empId, setEmpId] = useState(employee);
   const [callIdx, setCallIdx] = useState(0);
   const [pick, setPick] = useState("");
@@ -107,7 +111,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   useEffect(() => {
     try {
       const d = Number(localStorage.getItem("hsh-maxday") || 1);
-      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(d, 2) : 1);
+      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(Math.floor(d), 3) : 1);
       const s = JSON.parse(localStorage.getItem("hsh-seen") || "[]");
       setSeen(Array.isArray(s) ? s.filter((x) => typeof x === "string") : []);
     } catch {
@@ -116,7 +120,10 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
     }
   }, []);
 
-  const calls = CALLS[day] ?? [];
+  useEffect(() => { setShiftCalls(getShiftCalls(day)); }, [day]);
+
+  const calls = shiftCalls;
+  const mailDay = callerPage ? day : maxDay;
   const call = calls[callIdx];
   const questions = call ? getSymptomQuestions(call) : [];
   const catalog = getCatalog(day);
@@ -158,10 +165,13 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
     <div className="font-y2k bg-desk min-h-screen flex flex-col text-foreground">
       <div className="flex-1 p-4 relative">
         {phase === "desktop" && (
+          <div className="flex gap-4">
           <Button variant="ghost" onClick={() => load("Opening HSH Work Days...", () => setPhase("days"))} className="desktop-icon">
             <RetroIcon kind="folder" />
             <span>HSH Work Days</span>
           </Button>
+          <Button variant="ghost" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))} className="desktop-icon"><RetroIcon kind="mail" /><span>HSH Mail<br />{getMail(mailDay).length} messages</span></Button>
+          </div>
         )}
 
         {phase === "days" && (
@@ -182,7 +192,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
             <Win title="HSH TimeClock v1.2" onClose={() => setPhase("desktop")} className="w-96">
               <p className="font-bold">HOME SAFETY HOTLINE</p>
               <p className="text-xs mb-3">"We keep your home safe." — Est. 2000</p>
-              <p className="text-sm mb-1">Day {day} — {day === 1 ? "Mon, Jan 3, 2000" : "Tue, Jan 4, 2000"}</p>
+              <p className="text-sm mb-1">Day {day} — {DAY_DATES[day]}</p>
               <label className="text-sm">Employee ID:</label>
               <input value={empId} onChange={(e) => setEmpId(e.target.value)} className="bevel-in w-full px-2 py-1 mb-3 outline-none" placeholder="e.g. 0451" />
               <Button variant="ghost" className="btn98 w-full" disabled={!empId} onClick={() => load("Connecting to HSH Call Center...", () => { void navigate({ to: "/calls", search: { day, employee: empId } }); })}>CLOCK IN</Button>
@@ -192,7 +202,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
 
         {phase === "working" && call && (
           <div className="caller-page">
-            <header className="caller-header"><div className="flex items-center gap-3"><RetroIcon kind="phone" /><div><h1 className="font-bold text-xl">HOME SAFETY HOTLINE</h1><p className="text-xs">Operator {empId} · Day {day} · Line 1</p></div></div><span className="text-sm">CALL CENTER / 2000</span></header>
+            <header className="caller-header"><div className="flex items-center gap-3"><RetroIcon kind="phone" /><div><h1 className="font-bold text-xl">HOME SAFETY HOTLINE</h1><p className="text-xs">Operator {empId} · Day {day} · Line 1</p></div></div><Button variant="ghost" className="btn98" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))}><RetroIcon kind="mail" small />HSH Mail ({getMail(day).length})</Button></header>
             <div className="grid lg:grid-cols-2 gap-4 items-start">
             <Win title={`Incoming Call — Line 1 (${callIdx + 1}/${calls.length})`}>
               <div className="bg-term font-term text-xl p-3 h-64 overflow-auto">
@@ -267,15 +277,17 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
             <Win title="Shift Report" className="w-96">
               <p className="font-bold">Day {day} complete.</p>
               <p>Correct IDs: {score} / {calls.length}</p>
-              {CALLS[day + 1] ? <p className="mt-2 bg-new p-1 text-sm">Day {day + 1} unlocked! 4 new entries available.</p> : <p className="mt-2 text-sm">More days coming soon...</p>}
+              {CALLS[day + 1] ? <p className="mt-2 bg-new p-1 text-sm">Day {day + 1} unlocked! {getNewEntryCount(day + 1)} new entries available.</p> : <p className="mt-2 text-sm">More days coming soon...</p>}
               <Button variant="ghost" className="btn98 mt-3" onClick={() => navigate({ to: "/" })}>Clock Out</Button>
             </Win>
           </div>
         )}
       </div>
+      {showMail && <div className="mail-overlay" role="dialog" aria-modal="true" aria-label="HSH Mail"><Win title="HSH Mail 2000 — Inbox" className="w-full max-w-2xl max-h-[90vh] overflow-auto" onClose={() => setShowMail(false)}><Mailbox day={mailDay} /></Win></div>}
       {loading && <div className="loading-overlay" role="status" aria-live="polite"><Win title="Please wait" className="w-80 max-w-full"><p className="text-sm mb-3">{loading}</p><LoadingText duration={FILE_LOAD_MS} /></Win></div>}
       <div className="win flex justify-between items-center px-2 py-1 text-sm">
         <Button variant="ghost" className="btn98 font-bold !py-0">⊞ Start</Button>
+        <Button variant="ghost" className="btn98" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))}><RetroIcon kind="mail" small /><span>Mail</span></Button>
         <div className="flex items-center gap-2"><Button variant="ghost" className="btn98" onClick={toggleSound} aria-label={soundOn ? "Turn sound off" : "Turn sound on"} aria-pressed={soundOn} title={soundOn ? "Turn sound off" : "Turn sound on"}>{soundOn ? <Volume2 /> : <VolumeX />}<span className="text-xs">Sound {soundOn ? "on" : "off"}</span></Button>{audioError && <span role="status" className="text-xs">{audioError}</span>}</div>
         <span className="bevel-in px-2">{phase === "working" ? time : "12:00 AM"} · Y2K Ready</span>
       </div>

@@ -101,11 +101,61 @@ export const ENTRIES: Entry[] = [
     advice: "Keep your sinks and pipes clean, don't let anything dirty go down them, and pour bleach into every drain. Do not put your hands in the pipes.",
     notes: "CONFIDENTIAL: Describe the issue to callers as 'a plumbing infestation'.",
   },
+  // ===== DAY 3 CLASSIFIED =====
+  {
+    id: "ballastmold", name: "Ballast Mold", latin: "Stachybotrys mobilis", threat: "EXTREME", day: 3, confidential: true,
+    description: "A fast-growing subspecies of Black Mold. Its thick, dark colonies leach moisture and nutrients from surrounding objects, spreading over fabric, wood and metal far faster than ordinary mold. During a process HSH calls possession, the colony wraps an object in interconnected patches and uses it as a body. Expanding and contracting mold spots act like muscles, dragging chairs, turning handles and making toys walk without batteries. A possessed object is not alive; the mold controlling it is.",
+    habitat: "Damp rooms, flooded storage areas and water-damaged furniture. Colonies bridge between nearby objects when their surfaces touch.",
+    signs: "Homeowners report moving objects covered in mold, chairs dragging across empty rooms, damp toys walking by themselves, black patches pulsing in sequence and fresh growth appearing within hours.",
+    danger: "Possessed furniture can block exits or strike residents. Disturbing a colony disperses fragments to nearby objects. Spores irritate breathing; rapid spread can compromise an entire room overnight.",
+    solution: "Keep everyone away from the affected room. Do not touch, scrape, carry or burn possessed objects. Close the room off without approaching the growth, leave the property and request an HSH containment team. Repair moisture damage only after clearance.",
+    advice: "Stay away from the affected objects and do not try to clean or move them. Leave the house with everyone and keep the room closed if you can do so safely. Our specialist team will handle the contamination.",
+    notes: "CONFIDENTIAL: Never use the word possession on the line. Report moving objects as a priority contamination event.",
+  },
+  {
+    id: "bedsickle", name: "Bed Sickle", latin: "Falx lectularius", threat: "EXTREME", day: 3, confidential: true,
+    description: "A carnivorous sickle subspecies capable of hiding itself within beds. Its flattened, flexible body slips between mattress layers, inside box springs or beneath bedding, where its outline resembles ordinary folds. It remains motionless until a large mammal settles above it. Unlike Common Sickles, it can prey on full-grown adults and large dogs as well as children and smaller pets. An occupied mattress may look undisturbed after a disappearance.",
+    habitat: "Mattresses, box springs, guest beds and pet beds. Prefers beds used regularly; changing the sheets does not remove it.",
+    signs: "Children, adults, large dogs and small pets disappear while on a bed. Homeowners report breathing beneath an empty mattress, deep impressions with nobody lying down, bedding pulled inward and scratching inside a box spring.",
+    danger: "Can consume people and animals of many sizes. Prodding a mattress or trying to drag it outside can provoke an attack and trigger metamorphosis into a True Sickle.",
+    solution: "Do not sit, sleep or place pets on any suspect bed. Do not cut open or move the mattress. Leave the property, account for household members and contact emergency services for missing people while an HSH field team contains the bed.",
+    advice: "Keep everyone and every pet off that bed. Don't open or move the mattress. Leave the house now, and report anyone missing to emergency services. We are sending a specialist team.",
+    notes: "CONFIDENTIAL: Refer to a concealed bedroom hazard. Do not ask a caller to look inside the bed.",
+  },
+  {
+    id: "watersprite", name: "Water Sprite", latin: "Aquaptera minuta", threat: "MODERATE", day: 3, confidential: true,
+    description: "Small flying insects closely related to Desk Moths, with translucent wings and pale, rounded bodies. They love exposed fresh water and gather at the rims of drinking glasses, dipping their mouthparts into the surface. Their humming resembles a wet fingertip rubbing glass. They are much smaller than Desk Moths but larger than Soda Sprites, and a group can settle around a single glass overnight.",
+    habitat: "Glasses of water, uncovered pitchers, bedside cups, wet sinks and trays beneath houseplants. They return to a reliable water source each night.",
+    signs: "Tiny winged bugs circling water glasses, ripples in untouched cups, a glass-like hum, damp footprints around rims and pale flecks floating in water.",
+    danger: "Contaminates drinking water and may nip when trapped against skin. Swarms can gather around a person's face while they drink. Usually avoids confrontation if left undisturbed.",
+    solution: "Stop drinking from exposed containers. Cover fresh water, empty unused glasses and dry sink surrounds when the insects have left them. Do not swat the swarm. Request HSH collection if it returns; keep children and pets away from occupied cups.",
+    advice: "Don't drink from those glasses. Cover your fresh water and keep children and pets away from the insects. Once they have moved away, empty unused cups and dry the area. We can arrange a collection visit.",
+    notes: "CONFIDENTIAL: Describe these as water-attracted insects. Do not confuse them with the smaller, aggressive Soda Sprite.",
+  },
+  {
+    id: "truesickle", name: "True Sickle", latin: "Falx primordialis", threat: "EXTREME", day: 3, confidential: true,
+    description: "The original sickle form: a large, bulky humanoid with heavy limbs, grey hide and hooked claws. Every sickle subspecies can metamorphose into this form when excessively agitated, including Common, Pipe and Bed Sickles. The transformed animal migrates toward basement corners, but retains its previous lifestyle and preferences. A former Common Sickle seeks heat; a former Pipe Sickle favors drains and plumbing; a former Bed Sickle hides near mattresses and attacks resting prey.",
+    habitat: "Dark basement corners, utility rooms and crawl-space entrances. Its exact hiding place reflects its prior subspecies: furnace alcoves, plumbing recesses or stored bedding.",
+    signs: "A bulky person-shaped figure crouched in a basement corner, deep claw marks, heavy footsteps after a smaller infestation is disturbed, and damage centered on the same heat source, pipes or bedding as before.",
+    danger: "An immediate threat to adults, children and pets. Agitation makes it more aggressive. Ordinary treatments for the smaller subspecies are not a safe response once it has transformed.",
+    solution: "Evacuate without entering the basement. Do not confront it, block its path or approach controls near it. Record the earlier infestation's signs from the caller's memory only, then dispatch the highest-priority HSH containment team and emergency assistance.",
+    advice: "Leave the house immediately with everyone and your pets if you can reach them safely. Stay out of the basement and do not confront the figure. Tell me what happened before it appeared; our emergency specialist team is on its way.",
+    notes: "CONFIDENTIAL: Do not name sickles or metamorphosis. Earlier habits are identification clues, not permission to attempt the earlier treatment.",
+  },
+  {
+    id: "sodasprite", name: "Soda Sprite", latin: "Aquaptera saccharina", threat: "EXTREME", day: 3, confidential: true,
+    description: "A smaller relative of the Water Sprite, with amber bodies and rapid, nearly invisible wings. Attracted to soda rather than plain water, colonies crowd opened cans and spilled soft drinks. They are messy eaters, scattering sticky droplets and shredded can labels around a feeding site. An undisturbed colony may appear harmless, but agitation turns feeding behavior into a coordinated attack; a large swarm can eat a person alive.",
+    habitat: "Opened soda cans, fountain-drink cups, recycling bags, sticky counters and dried soda spills. Plain water is not their preferred food.",
+    signs: "Very tiny flying bugs around soda but not water, sticky spray despite nobody spilling a drink, chewed labels, a sharp buzzing from cans and sudden painful bites after a can is shaken or insects are swatted.",
+    danger: "Attacks when agitated. Swarms can cause fatal injuries and consume a trapped person. Shaking cans, swatting, spraying or attempting to wipe up an occupied spill can trigger an attack.",
+    solution: "Do not disturb the insects or handle occupied drinks. Move everyone away, leave the room and request urgent HSH collection. Remove soda sources and clean residue only after the field team declares the area clear. Never use the Desk Moth soda lure here.",
+    advice: "Stop handling the cans and don't swat or spray the insects. Move everyone away from the room and leave the house if they follow you. Our urgent-response team will collect them; wait for clearance before cleaning up any soda.",
+    notes: "CONFIDENTIAL: Refer to aggressive sugar-attracted insects. Desk Moth soda-lure advice must never be used for this infestation.",
+  },
 ];
 
-// 21 permanently classified files (sorted by hidden name)
+// 16 permanently classified files (sorted by hidden name)
 const HIDDEN = [
-  "Attic Wailer", "Basement Hound", "Bone Ant", "Chimney Leech", "Crawlspace Widow",
   "Drywall Eel", "Fridge Tick", "Gutter Shrike", "Hollow Wasp", "Lamp Beetle",
   "Mattress Grub", "Night Possum", "Oven Crab", "Porch Lurker", "Quiet Spider",
   "Roof Gnaw", "Shingle Bat", "Television Fly", "Under-Bed Hare", "Vent Lamprey", "Wall Stalker",
@@ -129,6 +179,7 @@ export type Call = {
   location: string;
   transcript: string[];
   answer: string;
+  symptoms?: [string, string, string];
 };
 
 export type SymptomQuestion = { id: string; question: string; reply: string };
@@ -145,7 +196,7 @@ const SYMPTOMS: Record<string, [string, string, string]> = {
 };
 
 export function getSymptomQuestions(call: Call): SymptomQuestion[] {
-  const replies = SYMPTOMS[call.answer];
+  const replies = call.symptoms ?? SYMPTOMS[call.answer];
   if (!replies) return [];
   return [
     { id: "health", question: "Has anyone felt sick, been hurt, or noticed unusual behavior?", reply: replies[0] },
@@ -181,4 +232,81 @@ export const CALLS: Record<number, Call[]> = {
     { caller: "Betty Lang", location: "Zanesville, OH", answer: "mold",
       transcript: ["After the roof leaked there's dark green spots on the ceiling.", "The whole room smells earthy and gross.", "I've had a headache for days."] },
   ],
+  3: [
+    { caller: "Evelyn Price", location: "Findlay, OH", answer: "ballastmold", transcript: ["The mold on my old chair spread over the whole frame before lunchtime.", "Now that chair drags itself across the room. The black patches tighten and loosen like muscles.", "It bumped the door shut, and I haven't touched it."], symptoms: ["My eyes sting in that room. The chair knocked my ankle before I got out.", "On the chair in our damp spare room. Black patches pulse, and the chair moves by itself.", "The leak was yesterday. The mold covered it within hours and it started moving today."] },
+    { caller: "Marcus Reed", location: "Newark, OH", answer: "bedsickle", transcript: ["Our big dog jumped onto the guest bed and disappeared. There's no way out of that room.", "Now the mattress is breathing even though nobody is on it.", "My daughter wants to go look for him. I've kept her outside the room."], symptoms: ["Our large dog is missing. Everyone else is out of the bedroom and accounted for.", "Inside the guest bed. Something breathes under the mattress and pulls the blanket inward.", "The bed felt lumpy for two nights. The dog disappeared this morning."] },
+    { caller: "Nora Wells", location: "Sandusky, OH", answer: "watersprite", transcript: ["There are tiny flying bugs around every glass of water I leave out.", "They sit on the rims, and the water ripples when nobody touches the glass.", "I can hear a little humming, almost like someone rubbing a wet glass."], symptoms: ["Nobody's hurt, but we stopped drinking the water with those little pale flecks.", "Around uncovered glasses of water, especially the cup on my nightstand.", "Three evenings now. More bugs arrive whenever I leave another glass out."] },
+    { caller: "Howard Ames", location: "Warren, OH", answer: "truesickle", transcript: ["We heard a little animal in the furnace and tried banging the vent to chase it away.", "After that there was a horrible scraping noise. Now something huge and person-shaped is crouching in the basement corner.", "It's still right beside the furnace. Its arms are thick and its claws scraped the concrete."], symptoms: ["Nobody's hurt yet. We are outside, but that thing could reach an adult easily.", "The basement corner by the furnace. The earlier small creature also stayed near the heat.", "The small noises lasted a week. The huge figure appeared after we banged on the vent today."] },
+    { caller: "Diane Mercer", location: "Lancaster, OH", answer: "sodasprite", transcript: ["Very tiny bugs are crowding my open soda cans, but they ignore my water glass.", "There's sticky spray everywhere and the labels look shredded.", "I shook a can and they flew at my hand and started biting. I left the kitchen."], symptoms: ["My hand has painful bites from when I shook a can. Everyone is away from the kitchen now.", "Around soda cans and a sticky spill on the kitchen counter, not the plain water beside them.", "They showed up yesterday. The biting started today when the can was shaken."] }
+  ],
 };
+
+// Authored alternatives: one variant is selected for each scheduled call per shift.
+const ALTERNATE_CALLS: Record<string, Call[]> = {
+  mole: [
+    {"caller": "Frank Ellis", "location": "Ohio", "answer": "mole", "transcript": ["The flower bed is sinking into soft ridges. Fresh dirt mounds appear beside the tulips every morning.", "I saw a small dark animal with huge front paws vanish underground."], "symptoms": ["No injuries, just damaged flower roots.", "Outside in the flower bed; tunnels and fresh mounds surround the tulips.", "Five mornings, with a fresh mound each day."]},
+    {"caller": "June Abbott", "location": "Ohio", "answer": "mole", "transcript": ["My backyard feels spongy and has raised tunnels. There are little volcano-shaped heaps by the sprinkler.", "I have not seen anything above ground, but the grass over those tunnels is dying."], "symptoms": ["Everyone is fine; the yard is the only damage.", "Under the backyard lawn beside the sprinkler, with soft ground and raised ridges.", "Two weeks; the dying grass patches are growing."]},
+  ],
+  rat: [
+    {"caller": "Owen Nash", "location": "Ohio", "answer": "rat", "transcript": ["Something gnawed through a bag of rice in the basement. Dark little pellets are scattered along the wall.", "At night I hear scratching, and I saw a brown rodent with a long bare tail."], "symptoms": ["Nobody was bitten, but the rice is contaminated.", "In the basement food cupboard, with droppings along its baseboard.", "Six nights, and the rice bag was torn open yesterday."]},
+    {"caller": "Rita Chen", "location": "Ohio", "answer": "rat", "transcript": ["The attic insulation has greasy tracks and little dark droppings. Something has chewed the cable up there.", "The scratching starts after midnight; I caught a glimpse of a long scaly tail."], "symptoms": ["Nobody is ill or hurt. I worry the chewed cable could start a fire.", "In the attic beside a damaged cable, with greasy tracks and pellet droppings.", "Ten days of night scratching; the cable damage is new."]},
+  ],
+  mold: [
+    {"caller": "Paula Scott", "location": "Ohio", "answer": "mold", "transcript": ["A pipe leaked under our sink, and now there is greenish-black slimy growth on the cabinet wall.", "The kitchen smells musty and I keep coughing when I stand there."], "symptoms": ["I cough in the kitchen, but nobody has been injured.", "Inside the wet cabinet under the kitchen sink; dark slimy patches surround the leak.", "The leak lasted a week. The patches spread over the last three days."]},
+    {"caller": "Victor Lane", "location": "Ohio", "answer": "mold", "transcript": ["The wallpaper in our basement is peeling over dark damp stains. It smells like wet earth.", "My wife gets a headache downstairs. Nothing is moving, it is just spreading over the wall."], "symptoms": ["My wife gets headaches and feels tired after being downstairs.", "On a basement wall behind peeling wallpaper; it is wet and stained green-black.", "Since last month's flood. The stains get wider each week."]},
+  ],
+  raccoon: [
+    {"caller": "Dean Porter", "location": "Ohio", "answer": "raccoon", "transcript": ["There is a heavy animal in our chimney, making little chittering sounds after dark.", "I saw its black eye mask and striped tail when it peeked out. Our trash lid was pulled open too."], "symptoms": ["No bites or scratches. We have kept away from it.", "Inside the chimney, plus overturned trash outside.", "Three nights; the lid was opened again this morning."]},
+    {"caller": "Alma Brooks", "location": "Ohio", "answer": "raccoon", "transcript": ["Something large crawled under the deck, with a grey body and a tail covered in rings.", "It tips the trash and thumps against the boards at night. I think there are babies with it."], "symptoms": ["Nobody is hurt; I have not cornered or touched it.", "Under our deck, near the trash cans; chittering and heavy thumps come from there.", "A week, mainly after sunset."]},
+  ],
+  termite: [
+    {"caller": "Ben Foster", "location": "Ohio", "answer": "termite", "transcript": ["The porch support sounds hollow and has thin mud tunnels running up it.", "There are piles of tiny discarded wings at the door and the porch is sagging."], "symptoms": ["No illnesses, but we have stopped walking on the sagging porch.", "The wooden porch support and foundation; there are mud tubes and hollow wood.", "We noticed the sag yesterday; the tubes may have been there longer."]},
+    {"caller": "Celia Ward", "location": "Ohio", "answer": "termite", "transcript": ["Paint on the window frame is bubbling, and the timber crumbles when pressed.", "I found little wings on the sill and mud tubes leading up from the soil."], "symptoms": ["Nobody is hurt, but the weakened frame worries me.", "At the downstairs window frame, with discarded wings and foundation mud tubes.", "A month of bubbling paint; the crumbling wood was noticed today."]},
+  ],
+  deskmoth: [
+    {"caller": "Lester Boyd", "location": "Ohio", "answer": "deskmoth", "transcript": ["The nightstand drawer sticks and all the paper inside has been chewed. Brown dust coats everything.", "A huge wood-grain moth burst out toward my face. There is a strange cola smell."], "symptoms": ["My eyes are irritated from brown wing dust.", "Inside the wooden nightstand drawer, with chewed paper and a cola smell.", "Four nights of fluttering; it flew out today."]},
+    {"caller": "Megan Ross", "location": "Ohio", "answer": "deskmoth", "transcript": ["My filing cabinet is full of brown dust and half the folders are eaten. I hear soft fluttering inside.", "A giant brown moth came out when I tried to shut the drawer, and my stapler is gone."], "symptoms": ["I have a rash on my wrist where its dusty wing brushed me.", "In the filing cabinet; eaten folders, missing supplies and brown dust.", "About a week; another folder disappears every night."]},
+  ],
+  mimic: [
+    {"caller": "Walter Bell", "location": "Ohio", "answer": "mimic", "transcript": ["Our terrier has stopped eating but looks heavier. Its front joints bend backward.", "It never blinks and stands outside our bedroom. The whining sounds like a person."], "symptoms": ["Nobody is hurt, but the dog's eyes bulge and its joints look wrong.", "In the hallway outside our bedroom; it stands there motionless and makes human-like whines.", "Five days since its behavior changed; it keeps getting heavier without eating."]},
+    {"caller": "Harriet Snow", "location": "Ohio", "answer": "mimic", "transcript": ["My shepherd stares at my son for hours. His eyes seem too large and his knees bend the wrong way.", "He barks when nobody is around and leaves his food untouched. He used to be normal."], "symptoms": ["The family is unharmed. The dog refuses food and has bulging eyes and backward-bending legs.", "By my son's room; he stares there without blinking.", "Three days; he no longer sleeps and stares all night."]},
+  ],
+  commonsickle: [
+    {"caller": "Gordon Pike", "location": "Ohio", "answer": "commonsickle", "transcript": ["Our kitten vanished and something small with two legs sprinted behind the radiator.", "Its hands looked hooked. There are claw marks around the heat vent, which has been pulled loose."], "symptoms": ["The kitten is missing. Everyone here is accounted for, but we are scared.", "At the radiator and heating vent; a small two-legged shape with hooked hands ran there.", "Six days of vent scratching; the kitten vanished last night."]},
+    {"caller": "Leah Grant", "location": "Ohio", "answer": "commonsickle", "transcript": ["My nephew is missing and the basement heater has long scratches beside it.", "I glimpsed a grey creature about two feet tall running on two legs into the warm duct."], "symptoms": ["My nephew is missing and police have been contacted. Nobody else here is hurt.", "Beside the basement heater and warm duct, with long claw scratches and a loose vent.", "The noises began two weeks ago; my nephew went missing today."]},
+  ],
+  pipesickle: [
+    {"caller": "Eric Moss", "location": "Ohio", "answer": "pipesickle", "transcript": ["A pipe below the bathtub has a ragged chewed hole. Clicking comes from the drain.", "Our pet mouse went missing beside the bath. My wife was bitten when she touched the drain opening."], "symptoms": ["My wife has a deep finger wound and is seeking medical care. The mouse is missing.", "Inside the bathtub drain and the chewed pipe below it.", "Clicking for four days, then the leak and bite this morning."]},
+    {"caller": "Tessa Ford", "location": "Ohio", "answer": "pipesickle", "transcript": ["Something clicked inside the laundry sink and chewed right through its pipe.", "Our small pet bird disappeared near it. I have kept the children away from the drain."], "symptoms": ["Nobody is injured, but the small bird is missing.", "The laundry sink plumbing, with clicking and a ragged hole leaking water.", "A week of clicking; the bird disappeared yesterday and the pipe leaked today."]},
+  ],
+  ballastmold: [
+    {"caller": "Martin Shaw", "location": "Ohio", "answer": "ballastmold", "transcript": ["My child's wooden toy is covered in black mold. It walks across the table without batteries.", "The patches puff up and shrink in order. It spread from a wet shelf to the toy in one afternoon."], "symptoms": ["Nobody is injured. We moved the children out before touching the toy.", "On a wooden toy and wet shelf; the pulsing patches make the toy walk.", "The shelf got wet yesterday; the growth spread and started moving this afternoon."]},
+    {"caller": "Sylvia Hart", "location": "Ohio", "answer": "ballastmold", "transcript": ["Black mold wrapped around a cupboard door after a leak. Now it opens and shuts by itself.", "The spots stretch and contract like muscles, and mold is reaching toward the chair beside it."], "symptoms": ["I have a cough in that room and the door struck my arm.", "Across a damp cupboard door, spreading toward an adjacent chair; the door moves by itself.", "Only two days since the leak. It grew across the door overnight."]},
+  ],
+  bedsickle: [
+    {"caller": "Rachel Dunn", "location": "Ohio", "answer": "bedsickle", "transcript": ["My husband lay on the bed and vanished. The bedroom door was closed and the window locked.", "There is a deep hollow in the mattress and scratching inside the box spring."], "symptoms": ["My husband is missing; I have called emergency services and stayed off the bed.", "Inside our bed and box spring, with an unexplained hollow and scratching.", "The mattress made noises for three nights. My husband disappeared today."]},
+    {"caller": "Neil Cross", "location": "Ohio", "answer": "bedsickle", "transcript": ["My child and our rabbit both went missing on the spare bed. We have searched everywhere else.", "The sheets keep pulling into the middle, and an empty mattress rises like something is breathing."], "symptoms": ["My child is missing and emergency services are on the way. The rabbit is gone too.", "On the spare bed; bedding draws inward and the empty mattress breathes.", "We heard noises yesterday. Both disappearances happened this morning."]},
+  ],
+  watersprite: [
+    {"caller": "Doris Kent", "location": "Ohio", "answer": "watersprite", "transcript": ["Pale winged bugs circle our open water pitcher. They gather at the rim and make a ringing hum.", "There are damp tiny marks around it and flecks floating in the water."], "symptoms": ["No injuries; we have stopped using the pitcher.", "Around an uncovered water pitcher on the dining table, with ripples and pale flecks.", "Since the weekend; more arrive each evening."]},
+    {"caller": "Alan Pierce", "location": "Ohio", "answer": "watersprite", "transcript": ["Tiny translucent-winged insects are crowding a cup of plain water beside my houseplant.", "They dip into it and make ripples. They are not eating my paperwork or touching soda."], "symptoms": ["One nipped my finger when I trapped it against the cup; everyone else is fine.", "At a plain water cup and wet houseplant tray; there are tiny winged bugs on the rims.", "Two nights; I noticed the humming again this morning."]},
+  ],
+  truesickle: [
+    {"caller": "Felicia West", "location": "Ohio", "answer": "truesickle", "transcript": ["We tried clearing clicking bugs from a drain. Then something much larger smashed the pipe cover.", "Now a bulky humanoid crouches in the basement corner beside the water lines. It still claws at the drains."], "symptoms": ["Nobody is hurt; we left the house when the huge figure appeared.", "A basement corner beside water lines. The earlier problem was clicking and chewed drain pipes.", "The pipe trouble lasted several days. The large creature appeared after we disturbed it today."]},
+    {"caller": "Stanley Webb", "location": "Ohio", "answer": "truesickle", "transcript": ["Something hid inside a mattress, so we tried cutting it open. A huge grey figure forced its way out.", "It moved to the basement corner where we store bedding. It is bulky, person-shaped and has hooked claws."], "symptoms": ["My brother has a scratch and is getting medical help. We are all outside now.", "In a basement corner by stored mattresses; it previously hid inside a bed.", "The bed noises lasted a week. It changed after the mattress was cut this morning."]},
+  ],
+  sodasprite: [
+    {"caller": "Gloria Hines", "location": "Ohio", "answer": "sodasprite", "transcript": ["Little amber flying bugs are eating around the soda recycling bag and throwing sticky drops everywhere.", "I tried wiping the spill and they swarmed my sleeve. They leave the plain water alone."], "symptoms": ["I have small painful bites on my arm. Everyone has left that room.", "At soda residue and cans in a recycling bag; tiny amber insects scatter sticky droplets.", "Three days of sticky mess. They attacked when I tried cleaning today."]},
+    {"caller": "Patrick Lowe", "location": "Ohio", "answer": "sodasprite", "transcript": ["There is sharp buzzing inside my fountain soda cup. Tiny bugs shredded the label and syrup is sprayed all around.", "When I swatted one, the others came at my face. I ran outside."], "symptoms": ["I was bitten near my cheek. My family is outside and away from them.", "At a fountain-drink cup and soda spill, not the covered water nearby.", "They appeared this afternoon and attacked as soon as I swatted one."]},
+  ],
+};
+export const CALL_VARIANTS: Record<string, Call[]> = Object.fromEntries(ENTRIES.map((entry) => {
+  const original = Object.values(CALLS).flat().find((call) => call.answer === entry.id);
+  return [entry.id, original ? [original, ...(ALTERNATE_CALLS[entry.id] ?? [])] : []];
+}));
+export function getShiftCalls(day: number, random: () => number = Math.random): Call[] {
+  return (CALLS[day] ?? []).map((call) => {
+    const variants = CALL_VARIANTS[call.answer] ?? [call];
+    return variants[Math.min(variants.length - 1, Math.max(0, Math.floor(random() * variants.length)))] ?? call;
+  });
+}

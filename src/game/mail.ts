@@ -1,0 +1,32 @@
+import { ENTRIES } from "./data";
+
+export type Mail = { id: string; day: number; sender: string; subject: string; body: string[] };
+export const DAY_DATES: Record<number, string> = {
+  1: "Mon, Jan 3, 2000", 2: "Tue, Jan 4, 2000", 3: "Wed, Jan 5, 2000",
+};
+export const MAIL: Mail[] = [
+  { id: "casey-1", day: 1, sender: "Casey — Shift Manager", subject: "Welcome to HSH / Level 1 permissions", body: [
+    "Good morning, operator! I'm Casey, your shift manager. Welcome to Home Safety Hotline. We survived Y2K; now let's survive Monday.",
+    "Your Level 1 permissions cover Mole, Rat, Termite, Black Mold and Raccoon. All other PestBase files remain ACCESS DENIED. Finish today's calls to receive tomorrow's clearance.",
+    "Ask about injuries, location and timing before making an identification. The right advice matters as much as the right name.",
+    "Daily joke: Why did the computer go to the pest inspector? It had too many bugs.",
+    "Please don't leave snacks inside the desk. Accounting says replacing a stapler is not a lunch expense. — Casey",
+  ] },
+  { id: "casey-2", day: 2, sender: "Casey — Shift Manager", subject: "Level 2 approved / Four new files", body: [
+    "Nice work getting through your first shift. Your Level 2 clearance is effective today.",
+    "Desk Moth, Mimic, Common Sickle and Pipe Sickle are now available alongside yesterday's files. These four cases are confidential. Use the approved caller scripts; never name the classified organism on the line.",
+    "Daily joke: What do you call a moth with an office job? A paper shredder with wings.",
+    "If you receive mail from an unknown sender, don't reply. Our mail server has been doing something strange since midnight. — Casey",
+  ] },
+  { id: "tenmio-2", day: 2, sender: "UNKNOWN", subject: "(no subject)", body: ["my name is tenmio oD ton ysta hree"] },
+  { id: "casey-3", day: 3, sender: "Casey — Shift Manager", subject: "Level 3 clearance / Five new files", body: [
+    "Morning. Your Level 3 permissions are active. Ballast Mold, Bed Sickle, Water Sprite, True Sickle and Soda Sprite have been released to your terminal.",
+    "Keep all earlier permissions. Moving mold-covered objects are not a housekeeping call. Missing people on a bed and a bulky figure in a basement are urgent containment cases. Keep callers away from the hazard.",
+    "Water Sprites prefer water. Soda Sprites prefer soda and can attack when agitated. Do not reuse the Desk Moth soda lure for a Soda Sprite.",
+    "A True Sickle keeps habits from its earlier form. Ask what happened before it appeared, but never send someone downstairs to check.",
+    "Daily joke: Why did the operator bring a blanket to work? Too many cold calls. On second thought, leave blankets out of the basement.",
+    "About yesterday's unknown message: I didn't send it. Stay with the approved scripts and finish your shift. — Casey",
+  ] },
+];
+export function getMail(day: number): Mail[] { return MAIL.filter((mail) => mail.day <= day); }
+export function getNewEntryCount(day: number): number { return ENTRIES.filter((entry) => entry.day === day).length; }
