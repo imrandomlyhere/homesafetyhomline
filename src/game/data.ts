@@ -101,11 +101,61 @@ export const ENTRIES: Entry[] = [
     advice: "Keep your sinks and pipes clean, don't let anything dirty go down them, and pour bleach into every drain. Do not put your hands in the pipes.",
     notes: "CONFIDENTIAL: Describe the issue to callers as 'a plumbing infestation'.",
   },
+  // ===== DAY 3 CLASSIFIED =====
+  {
+    id: "ballastmold", name: "Ballast Mold", latin: "Stachybotrys mobilis", threat: "EXTREME", day: 3, confidential: true,
+    description: "A fast-growing subspecies of Black Mold. Its thick, dark colonies leach moisture and nutrients from surrounding objects, spreading over fabric, wood and metal far faster than ordinary mold. During a process HSH calls possession, the colony wraps an object in interconnected patches and uses it as a body. Expanding and contracting mold spots act like muscles, dragging chairs, turning handles and making toys walk without batteries. A possessed object is not alive; the mold controlling it is.",
+    habitat: "Damp rooms, flooded storage areas and water-damaged furniture. Colonies bridge between nearby objects when their surfaces touch.",
+    signs: "Homeowners report moving objects covered in mold, chairs dragging across empty rooms, damp toys walking by themselves, black patches pulsing in sequence and fresh growth appearing within hours.",
+    danger: "Possessed furniture can block exits or strike residents. Disturbing a colony disperses fragments to nearby objects. Spores irritate breathing; rapid spread can compromise an entire room overnight.",
+    solution: "Keep everyone away from the affected room. Do not touch, scrape, carry or burn possessed objects. Close the room off without approaching the growth, leave the property and request an HSH containment team. Repair moisture damage only after clearance.",
+    advice: "Stay away from the affected objects and do not try to clean or move them. Leave the house with everyone and keep the room closed if you can do so safely. Our specialist team will handle the contamination.",
+    notes: "CONFIDENTIAL: Never use the word possession on the line. Report moving objects as a priority contamination event.",
+  },
+  {
+    id: "bedsickle", name: "Bed Sickle", latin: "Falx lectularius", threat: "EXTREME", day: 3, confidential: true,
+    description: "A carnivorous sickle subspecies capable of hiding itself within beds. Its flattened, flexible body slips between mattress layers, inside box springs or beneath bedding, where its outline resembles ordinary folds. It remains motionless until a large mammal settles above it. Unlike Common Sickles, it can prey on full-grown adults and large dogs as well as children and smaller pets. An occupied mattress may look undisturbed after a disappearance.",
+    habitat: "Mattresses, box springs, guest beds and pet beds. Prefers beds used regularly; changing the sheets does not remove it.",
+    signs: "Children, adults, large dogs and small pets disappear while on a bed. Homeowners report breathing beneath an empty mattress, deep impressions with nobody lying down, bedding pulled inward and scratching inside a box spring.",
+    danger: "Can consume people and animals of many sizes. Prodding a mattress or trying to drag it outside can provoke an attack and trigger metamorphosis into a True Sickle.",
+    solution: "Do not sit, sleep or place pets on any suspect bed. Do not cut open or move the mattress. Leave the property, account for household members and contact emergency services for missing people while an HSH field team contains the bed.",
+    advice: "Keep everyone and every pet off that bed. Don't open or move the mattress. Leave the house now, and report anyone missing to emergency services. We are sending a specialist team.",
+    notes: "CONFIDENTIAL: Refer to a concealed bedroom hazard. Do not ask a caller to look inside the bed.",
+  },
+  {
+    id: "watersprite", name: "Water Sprite", latin: "Aquaptera minuta", threat: "MODERATE", day: 3, confidential: true,
+    description: "Small flying insects closely related to Desk Moths, with translucent wings and pale, rounded bodies. They love exposed fresh water and gather at the rims of drinking glasses, dipping their mouthparts into the surface. Their humming resembles a wet fingertip rubbing glass. They are much smaller than Desk Moths but larger than Soda Sprites, and a group can settle around a single glass overnight.",
+    habitat: "Glasses of water, uncovered pitchers, bedside cups, wet sinks and trays beneath houseplants. They return to a reliable water source each night.",
+    signs: "Tiny winged bugs circling water glasses, ripples in untouched cups, a glass-like hum, damp footprints around rims and pale flecks floating in water.",
+    danger: "Contaminates drinking water and may nip when trapped against skin. Swarms can gather around a person's face while they drink. Usually avoids confrontation if left undisturbed.",
+    solution: "Stop drinking from exposed containers. Cover fresh water, empty unused glasses and dry sink surrounds when the insects have left them. Do not swat the swarm. Request HSH collection if it returns; keep children and pets away from occupied cups.",
+    advice: "Don't drink from those glasses. Cover your fresh water and keep children and pets away from the insects. Once they have moved away, empty unused cups and dry the area. We can arrange a collection visit.",
+    notes: "CONFIDENTIAL: Describe these as water-attracted insects. Do not confuse them with the smaller, aggressive Soda Sprite.",
+  },
+  {
+    id: "truesickle", name: "True Sickle", latin: "Falx primordialis", threat: "EXTREME", day: 3, confidential: true,
+    description: "The original sickle form: a large, bulky humanoid with heavy limbs, grey hide and hooked claws. Every sickle subspecies can metamorphose into this form when excessively agitated, including Common, Pipe and Bed Sickles. The transformed animal migrates toward basement corners, but retains its previous lifestyle and preferences. A former Common Sickle seeks heat; a former Pipe Sickle favors drains and plumbing; a former Bed Sickle hides near mattresses and attacks resting prey.",
+    habitat: "Dark basement corners, utility rooms and crawl-space entrances. Its exact hiding place reflects its prior subspecies: furnace alcoves, plumbing recesses or stored bedding.",
+    signs: "A bulky person-shaped figure crouched in a basement corner, deep claw marks, heavy footsteps after a smaller infestation is disturbed, and damage centered on the same heat source, pipes or bedding as before.",
+    danger: "An immediate threat to adults, children and pets. Agitation makes it more aggressive. Ordinary treatments for the smaller subspecies are not a safe response once it has transformed.",
+    solution: "Evacuate without entering the basement. Do not confront it, block its path or approach controls near it. Record the earlier infestation's signs from the caller's memory only, then dispatch the highest-priority HSH containment team and emergency assistance.",
+    advice: "Leave the house immediately with everyone and your pets if you can reach them safely. Stay out of the basement and do not confront the figure. Tell me what happened before it appeared; our emergency specialist team is on its way.",
+    notes: "CONFIDENTIAL: Do not name sickles or metamorphosis. Earlier habits are identification clues, not permission to attempt the earlier treatment.",
+  },
+  {
+    id: "sodasprite", name: "Soda Sprite", latin: "Aquaptera saccharina", threat: "EXTREME", day: 3, confidential: true,
+    description: "A smaller relative of the Water Sprite, with amber bodies and rapid, nearly invisible wings. Attracted to soda rather than plain water, colonies crowd opened cans and spilled soft drinks. They are messy eaters, scattering sticky droplets and shredded can labels around a feeding site. An undisturbed colony may appear harmless, but agitation turns feeding behavior into a coordinated attack; a large swarm can eat a person alive.",
+    habitat: "Opened soda cans, fountain-drink cups, recycling bags, sticky counters and dried soda spills. Plain water is not their preferred food.",
+    signs: "Very tiny flying bugs around soda but not water, sticky spray despite nobody spilling a drink, chewed labels, a sharp buzzing from cans and sudden painful bites after a can is shaken or insects are swatted.",
+    danger: "Attacks when agitated. Swarms can cause fatal injuries and consume a trapped person. Shaking cans, swatting, spraying or attempting to wipe up an occupied spill can trigger an attack.",
+    solution: "Do not disturb the insects or handle occupied drinks. Move everyone away, leave the room and request urgent HSH collection. Remove soda sources and clean residue only after the field team declares the area clear. Never use the Desk Moth soda lure here.",
+    advice: "Stop handling the cans and don't swat or spray the insects. Move everyone away from the room and leave the house if they follow you. Our urgent-response team will collect them; wait for clearance before cleaning up any soda.",
+    notes: "CONFIDENTIAL: Refer to aggressive sugar-attracted insects. Desk Moth soda-lure advice must never be used for this infestation.",
+  },
 ];
 
-// 21 permanently classified files (sorted by hidden name)
+// 16 permanently classified files (sorted by hidden name)
 const HIDDEN = [
-  "Attic Wailer", "Basement Hound", "Bone Ant", "Chimney Leech", "Crawlspace Widow",
   "Drywall Eel", "Fridge Tick", "Gutter Shrike", "Hollow Wasp", "Lamp Beetle",
   "Mattress Grub", "Night Possum", "Oven Crab", "Porch Lurker", "Quiet Spider",
   "Roof Gnaw", "Shingle Bat", "Television Fly", "Under-Bed Hare", "Vent Lamprey", "Wall Stalker",
@@ -129,6 +179,7 @@ export type Call = {
   location: string;
   transcript: string[];
   answer: string;
+  symptoms?: [string, string, string];
 };
 
 export type SymptomQuestion = { id: string; question: string; reply: string };
@@ -145,7 +196,7 @@ const SYMPTOMS: Record<string, [string, string, string]> = {
 };
 
 export function getSymptomQuestions(call: Call): SymptomQuestion[] {
-  const replies = SYMPTOMS[call.answer];
+  const replies = call.symptoms ?? SYMPTOMS[call.answer];
   if (!replies) return [];
   return [
     { id: "health", question: "Has anyone felt sick, been hurt, or noticed unusual behavior?", reply: replies[0] },
@@ -180,5 +231,12 @@ export const CALLS: Record<number, Call[]> = {
       transcript: ["My kitchen pipe burst. The hole looks chewed, not cracked.", "My daughter's hamster was in its ball by the sink and now it's just gone.", "And my son stuck his finger in the drain and... it's half eaten. We're at the ER now."] },
     { caller: "Betty Lang", location: "Zanesville, OH", answer: "mold",
       transcript: ["After the roof leaked there's dark green spots on the ceiling.", "The whole room smells earthy and gross.", "I've had a headache for days."] },
+  ],
+  3: [
+    { caller: "Evelyn Price", location: "Findlay, OH", answer: "ballastmold", transcript: ["The mold on my old chair spread over the whole frame before lunchtime.", "Now that chair drags itself across the room. The black patches tighten and loosen like muscles.", "It bumped the door shut, and I haven't touched it."], symptoms: ["My eyes sting in that room. The chair knocked my ankle before I got out.", "On the chair in our damp spare room. Black patches pulse, and the chair moves by itself.", "The leak was yesterday. The mold covered it within hours and it started moving today."] },
+    { caller: "Marcus Reed", location: "Newark, OH", answer: "bedsickle", transcript: ["Our big dog jumped onto the guest bed and disappeared. There's no way out of that room.", "Now the mattress is breathing even though nobody is on it.", "My daughter wants to go look for him. I've kept her outside the room."], symptoms: ["Our large dog is missing. Everyone else is out of the bedroom and accounted for.", "Inside the guest bed. Something breathes under the mattress and pulls the blanket inward.", "The bed felt lumpy for two nights. The dog disappeared this morning."] },
+    { caller: "Nora Wells", location: "Sandusky, OH", answer: "watersprite", transcript: ["There are tiny flying bugs around every glass of water I leave out.", "They sit on the rims, and the water ripples when nobody touches the glass.", "I can hear a little humming, almost like someone rubbing a wet glass."], symptoms: ["Nobody's hurt, but we stopped drinking the water with those little pale flecks.", "Around uncovered glasses of water, especially the cup on my nightstand.", "Three evenings now. More bugs arrive whenever I leave another glass out."] },
+    { caller: "Howard Ames", location: "Warren, OH", answer: "truesickle", transcript: ["We heard a little animal in the furnace and tried banging the vent to chase it away.", "After that there was a horrible scraping noise. Now something huge and person-shaped is crouching in the basement corner.", "It's still right beside the furnace. Its arms are thick and its claws scraped the concrete."], symptoms: ["Nobody's hurt yet. We are outside, but that thing could reach an adult easily.", "The basement corner by the furnace. The earlier small creature also stayed near the heat.", "The small noises lasted a week. The huge figure appeared after we banged on the vent today."] },
+    { caller: "Diane Mercer", location: "Lancaster, OH", answer: "sodasprite", transcript: ["Very tiny bugs are crowding my open soda cans, but they ignore my water glass.", "There's sticky spray everywhere and the labels look shredded.", "I shook a can and they flew at my hand and started biting. I left the kitchen."], symptoms: ["My hand has painful bites from when I shook a can. Everyone is away from the kitchen now.", "Around soda cans and a sticky spill on the kitchen counter, not the plain water beside them.", "They showed up yesterday. The biting started today when the can was shaken."] }
   ],
 };
