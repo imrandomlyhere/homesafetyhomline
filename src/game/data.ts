@@ -305,8 +305,16 @@ export const CALL_VARIANTS: Record<string, Call[]> = Object.fromEntries(ENTRIES.
   return [entry.id, original ? [original, ...(ALTERNATE_CALLS[entry.id] ?? [])] : []];
 }));
 export function getShiftCalls(day: number, random: () => number = Math.random): Call[] {
-  return (CALLS[day] ?? []).map((call) => {
+  const scheduled = (CALLS[day] ?? []).map((call) => {
     const variants = CALL_VARIANTS[call.answer] ?? [call];
     return variants[Math.min(variants.length - 1, Math.max(0, Math.floor(random() * variants.length)))] ?? call;
   });
+  // Shuffle call order every shift so no pest is always the first caller.
+  for (let i = scheduled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    const temp = scheduled[i]!;
+    scheduled[i] = scheduled[j]!;
+    scheduled[j] = temp;
+  }
+  return scheduled;
 }
