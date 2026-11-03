@@ -10,3 +10,4 @@
 - [x] Add symptom follow-up questions and caller responses.
 - [x] Add optional dial-up, computer, and phone sounds.
 - [x] Lengthen loading and use advancing ASCII progress bars; verify the call flow.
+- [x] Add Day 4 (six entries, calls, Casey + no-subject mail).

@@ -152,13 +152,72 @@ export const ENTRIES: Entry[] = [
     advice: "Stop handling the cans and don't swat or spray the insects. Move everyone away from the room and leave the house if they follow you. Our urgent-response team will collect them; wait for clearance before cleaning up any soda.",
     notes: "CONFIDENTIAL: Refer to aggressive sugar-attracted insects. Desk Moth soda-lure advice must never be used for this infestation.",
   },
+  {
+    id: "atticgnome", name: "Attic Gnome", latin: "Gnomus atticus", threat: "LOW", day: 4,
+    description: "A small, bearded gnome subspecies about 14 inches tall that settles in attics and builds homes out of trash. Attic gnomes are extraordinarily crafty: a colony can build one large object in a week that would take a person a month, as long as it is kept supplied with trash. Most of the public knows about them, and many homeowners keep colonies on purpose to build furniture, sheds, boats and sculptures.",
+    habitat: "Attics, crawl spaces and storage lofts with steady access to household trash, cardboard, cans, scrap wood and old fabric.",
+    signs: "Hammering, sawing and tiny footsteps in the attic; trash vanishing from bins; neat little huts made of cans and cardboard; finished furniture or large objects appearing in the attic that nobody built.",
+    danger: "Very low. They are peaceful and shy. A colony that runs out of trash may leave or take random household items to build with. Large finished objects can overload old attic floors.",
+    solution: "No extermination needed. Either keep the colony and supply trash regularly (they are excellent builders), or stop leaving trash out and they will move on within a few weeks. Check that the attic floor can support any large objects they build.",
+    advice: "Good news — that sounds like attic gnomes. They're harmless and very handy. Keep giving them your clean trash and they'll keep building; stop the trash and they'll move on in a few weeks. Just don't let a big build overload the attic floor.",
+    notes: "PUBLIC: Attic gnomes are common knowledge. You may name them to the caller.",
+  },
+  {
+    id: "fluffk", name: "Fluffk", latin: "Falx lanatus", threat: "EXTREME", day: 4, confidential: true,
+    description: "A small, semi-carnivorous creature related to sickles but smaller and covered in thick, soft fluff. Despite its size it is a major threat to humans: a fluffk wears the skin of its victims to get close to and eat other people. Fluffks are erratic and quite crazy, so their disguises are poor — wearers twitch, laugh at wrong moments, move stiffly and forget basic facts about the person or animal they are wearing.",
+    habitat: "Houses with children or pets. Nests are hidden in laundry piles, under porches and inside stuffed-toy bins, lined with shed fluff.",
+    signs: "A child, pet or other mammal that seems 'wrong' — loose or baggy skin, stiff movement, a smile that doesn't move, laughing at nothing, not recognizing family, wanting to be alone with someone. Tufts of grey fluff in clothing and bedding.",
+    danger: "Extreme. A disguised fluffk will try to eat the people closest to the person it is wearing. When discovered it becomes frantic and unpredictable.",
+    solution: "Do not confront or question the suspected individual. Separate everyone else from it calmly without signaling suspicion, leave the house and request immediate HSH containment. Never try to remove the 'skin'.",
+    advice: "I need you to stay calm and not let them know anything is wrong. Make an excuse to take everyone else outside — don't be alone with them and don't try to check them. Lock the door behind you; our specialist team is coming right away.",
+    notes: "CONFIDENTIAL: Never name the fluffk or mention skin-wearing. Refer only to 'a dangerous animal that may be hiding in the home'.",
+  },
+  {
+    id: "orb", name: "The Orb", latin: "Sphaera ignota", threat: "MODERATE", day: 4, confidential: true,
+    description: "Very little is known about the Orb. It is a floating, softly glowing sphere roughly the size of a basketball that appears inside houses without entering through any door or window. It speaks a short message in an unknown language — HSH linguists believe the messages describe something in the future — and then vanishes. No two recordings have matched, and no one has ever caught or photographed it clearly.",
+    habitat: "Unknown. Appears indoors, most often in hallways, kitchens and living rooms, usually at night.",
+    signs: "A glowing floating ball, humming, lights flickering, a voice speaking an unfamiliar language, clocks stopping and a static or ozone smell after it leaves.",
+    danger: "No physical injuries have been recorded. Witnesses report headaches, ringing ears and lost minutes. The meaning of its messages — and whether they come true — is unknown.",
+    solution: "Do not touch or follow it. Write down exactly what it said as best as possible and the time it appeared. Report the message to HSH so it can be logged; it leaves on its own.",
+    advice: "Don't touch it or follow it — it will leave on its own. Please write down anything it said, even if it's just sounds, and the exact time. We'll log your report and send someone to take your notes.",
+    notes: "CONFIDENTIAL: Do not call it 'the Orb'. Describe it as an unusual electrical or light phenomenon. All recorded messages go to HSH research.",
+  },
+  {
+    id: "springin", name: "Springin", latin: "Arbor mendax", threat: "EXTREME", day: 4, confidential: true,
+    description: "Springin — 'fake trees', as they are called in Dutch — look like ordinary young trees, but they speak fluent English. They lure children with friendly talk and convince them to commit horrible acts, and eventually persuade them to become one of them. How the transformation works is unknown. Converted children stand rigidly in the sun for hours, slowly taking root.",
+    habitat: "Backyards, parks and lots near homes with children. A springin can appear overnight in a spot where no tree was planted.",
+    signs: "Children doing things they would never do, secretive whispering in the yard, a new tree no one planted, a child standing perfectly still in the sun for hours, bark-like dry skin, dirt or sap on the feet.",
+    danger: "Extreme for children. Children who are fully converted have not been recovered. Adults are usually ignored, but the trees will try to turn a child against their family.",
+    solution: "Keep all children indoors and away from the tree, close blinds facing it and do not let anyone talk to it. Never cut or burn it yourself. Request immediate HSH removal; affected children need supervised care.",
+    advice: "Bring your children inside right now and keep them away from that tree — close the curtains facing the yard. Don't cut it down or talk to it. Stay with your child and keep them out of the sun; our removal team is on the way.",
+    notes: "CONFIDENTIAL: Never say the tree talks. Refer to it as 'a diseased tree' and the child's behavior as heat sickness.",
+  },
+  {
+    id: "redacted", name: "##########", latin: "#### ######", threat: "EXTREME", day: 4, confidential: true,
+    description: "##### ########## ################ ######### ####### ####### ######### rare ###### ######## ################# ######### ######## ###### ####.",
+    habitat: "Closets. ####### ####### ######## ########.",
+    signs: "Reports usually describe it in their closet. ####### ######## ###### ######## ############ ####### ####.",
+    danger: "Unknown. ########## ########## ######## ######.",
+    solution: "#### ######## ########## ##### ###### ######. Do not open the closet.",
+    advice: "Please close the closet door and don't open it again. Leave that room and shut the door. We're sending someone; don't describe it to anyone else.",
+    notes: "CONFIDENTIAL: FILE REDACTED BY ORDER OF HSH MANAGEMENT. ##### ######.",
+  },
+  {
+    id: "fae", name: "Fae", latin: "Caro viridis", threat: "LOW", day: 4, confidential: true,
+    description: "A giant, slowly growing mass of living flesh. Nobody knows how it grows — it has no visible mouth, roots or organs. It smells strongly of fresh-cut grass and is warm to the touch. HSH keeps a farm of fae at the office because it makes very good meat, but we are the only ones who know about it.",
+    habitat: "Humid climates and humid rooms: basements, bathrooms, greenhouses, laundry rooms and crawl spaces near water.",
+    signs: "A smell of fresh-cut grass indoors with no grass nearby, a warm pinkish lump that gets bigger every day, damp walls, a soft pulsing or gurgling sound.",
+    danger: "Low. It does not attack. Large masses can block doorways, pull moisture from the room and attract other pests looking for food.",
+    solution: "Do not cut, cook or eat it. Keep the room humid and undisturbed until collection. HSH will collect all of it — every sample is to be brought back to the office.",
+    advice: "Please don't cut it, throw it away or touch it. Leave the room as it is and keep the door closed. We'll send a crew to collect it for free — we need all of it, so please don't let anyone else take it.",
+    notes: "CONFIDENTIAL: Never mention the HSH fae farm or that it is edible. Always arrange collection for the office.",
+  },
 ];
 
-// 16 permanently classified files (sorted by hidden name)
+// 10 permanently classified files (sorted by hidden name)
 const HIDDEN = [
   "Drywall Eel", "Fridge Tick", "Gutter Shrike", "Hollow Wasp", "Lamp Beetle",
-  "Mattress Grub", "Night Possum", "Oven Crab", "Porch Lurker", "Quiet Spider",
-  "Roof Gnaw", "Shingle Bat", "Television Fly", "Under-Bed Hare", "Vent Lamprey", "Wall Stalker",
+  "Night Possum", "Oven Crab", "Quiet Spider", "Television Fly", "Vent Lamprey",
 ];
 
 export type Slot = { key: string; sort: string; entry?: Entry };
@@ -239,6 +298,14 @@ export const CALLS: Record<number, Call[]> = {
     { caller: "Howard Ames", location: "Warren, OH", answer: "truesickle", transcript: ["We heard a little animal in the furnace and tried banging the vent to chase it away.", "After that there was a horrible scraping noise. Now something huge and person-shaped is crouching in the basement corner.", "It's still right beside the furnace. Its arms are thick and its claws scraped the concrete."], symptoms: ["Nobody's hurt yet. We are outside, but that thing could reach an adult easily.", "The basement corner by the furnace. The earlier small creature also stayed near the heat.", "The small noises lasted a week. The huge figure appeared after we banged on the vent today."] },
     { caller: "Diane Mercer", location: "Lancaster, OH", answer: "sodasprite", transcript: ["Very tiny bugs are crowding my open soda cans, but they ignore my water glass.", "There's sticky spray everywhere and the labels look shredded.", "I shook a can and they flew at my hand and started biting. I left the kitchen."], symptoms: ["My hand has painful bites from when I shook a can. Everyone is away from the kitchen now.", "Around soda cans and a sticky spill on the kitchen counter, not the plain water beside them.", "They showed up yesterday. The biting started today when the can was shaken."] }
   ],
+  4: [
+    { caller: "Herb Dunlap", location: "Marion, OH", answer: "atticgnome", transcript: ["I keep hearing hammering and little footsteps up in the attic.", "I went up there and found a whole rocking chair made out of soda cans and cardboard.", "And my trash bags keep disappearing from the garage."], symptoms: ["Nobody's hurt. Honestly it's kind of impressive.", "Up in the attic. There are tiny huts made of cans in the corner.", "About two weeks. The chair showed up after the first week."] },
+    { caller: "Wendy Carr", location: "Elyria, OH", answer: "fluffk", transcript: ["Something is wrong with my son. He came in from the yard and he just... isn't him.", "His skin looks loose around the neck and he laughs when nothing is funny.", "He keeps asking his little sister to come play in the basement alone with him."], symptoms: ["He's not hurt, but he moves stiff, like he's wearing a costume. He didn't know his own dog's name.", "In the house. I found grey fluff all over his clothes.", "Since yesterday evening. He's acting stranger every hour."] },
+    { caller: "Arthur Kim", location: "Kent, OH", answer: "orb", transcript: ["There was a glowing ball floating in my hallway last night.", "It hummed and then it talked — but in a language I've never heard.", "Then it was just gone. My clocks all stopped at 3:14."], symptoms: ["I've had ringing in my ears and a headache since. Nobody was hurt.", "The upstairs hallway. It smelled like a thunderstorm after.", "Just last night. It hasn't come back."] },
+    { caller: "Lorraine Fisk", location: "Medina, OH", answer: "springin", transcript: ["My daughter has been doing things she'd never do. She cut up her brother's jacket and smiled about it.", "She keeps whispering to a little tree in the backyard. We never planted a tree there.", "Today she stood in the sun for four hours without moving."], symptoms: ["Her skin is dry and rough, almost like bark. She won't drink anything.", "By the new tree in the backyard. There's dirt all over her feet.", "About a week. That tree showed up the same morning."] },
+    { caller: "Unknown Caller", location: "##, OH", answer: "redacted", transcript: ["There is something in my closet.", "I can't describe it. I tried. It's ###### and it ######.", "Please. What do I do? It knows I'm on the phone."], symptoms: ["I don't know. I can't remember what my hands did.", "The bedroom closet. The door is open a crack.", "It has always been there. I only just noticed."] },
+    { caller: "Gene Tolliver", location: "Portsmouth, OH", answer: "fae", transcript: ["There's a big warm pink lump growing in my basement.", "It smells exactly like fresh cut grass down there, but it's winter.", "It's bigger every morning. It's the size of a couch now."], symptoms: ["Nobody's sick. It doesn't move or bite.", "The basement by the water heater. It's really humid down there.", "It started as a softball maybe a month ago."] },
+  ],
 };
 
 // Authored alternatives: one variant is selected for each scheduled call per shift.
@@ -298,6 +365,30 @@ const ALTERNATE_CALLS: Record<string, Call[]> = {
   sodasprite: [
     {"caller": "Gloria Hines", "location": "Ohio", "answer": "sodasprite", "transcript": ["Little amber flying bugs are eating around the soda recycling bag and throwing sticky drops everywhere.", "I tried wiping the spill and they swarmed my sleeve. They leave the plain water alone."], "symptoms": ["I have small painful bites on my arm. Everyone has left that room.", "At soda residue and cans in a recycling bag; tiny amber insects scatter sticky droplets.", "Three days of sticky mess. They attacked when I tried cleaning today."]},
     {"caller": "Patrick Lowe", "location": "Ohio", "answer": "sodasprite", "transcript": ["There is sharp buzzing inside my fountain soda cup. Tiny bugs shredded the label and syrup is sprayed all around.", "When I swatted one, the others came at my face. I ran outside."], "symptoms": ["I was bitten near my cheek. My family is outside and away from them.", "At a fountain-drink cup and soda spill, not the covered water nearby.", "They appeared this afternoon and attacked as soon as I swatted one."]},
+  ],
+  atticgnome: [
+    { caller: "Rosa Ingram", location: "Ohio", answer: "atticgnome", transcript: ["Someone built a full-size canoe in my attic out of cereal boxes and tin foil.", "At night there's tiny sawing sounds and my recycling bin is always empty."], symptoms: ["Nobody's hurt. My kids want to keep whatever it is.", "In the attic, behind the insulation. Little doors made of bottle caps.", "The canoe appeared in about a week."] },
+    { caller: "Clyde Barker", location: "Ohio", answer: "atticgnome", transcript: ["I keep hearing tapping above my bedroom, and there's a dresser up there made of milk jugs.", "My old newspapers are gone and there are tiny boot prints in the dust."], symptoms: ["No one is hurt, it's just noisy.", "Over the bedroom in the attic. There's a whole tiny village of cans.", "A couple of weeks, and the building gets faster."] },
+  ],
+  fluffk: [
+    { caller: "Maureen Pratt", location: "Ohio", answer: "fluffk", transcript: ["Our cat came back from outside and it's not right. It walks on its back legs when it thinks no one's looking.", "Its fur is baggy around the middle and it purrs like a person humming."], symptoms: ["It scratched my husband and laughed. Cats don't laugh.", "In the laundry room. There's grey fluff on everything.", "Two days ago."] },
+    { caller: "Doug Fenwick", location: "Ohio", answer: "fluffk", transcript: ["My daughter's smile doesn't move. It just stays there.", "She forgot her own birthday and keeps sniffing her baby brother."], symptoms: ["She isn't hurt, but her skin looks too big for her hands.", "Her bedroom. The toy bin is stuffed with grey fluff.", "Since she came back from the park this morning."] },
+  ],
+  orb: [
+    { caller: "Ida Monroe", location: "Ohio", answer: "orb", transcript: ["A glowing sphere floated through my kitchen and the lights flickered.", "It spoke a few words — not any language I know — and then it vanished."], symptoms: ["I lost about ten minutes. Otherwise I'm fine.", "In the kitchen above the table. Smelled like static after.", "Tonight, about an hour ago."] },
+    { caller: "Ray Holloway", location: "Ohio", answer: "orb", transcript: ["A ball of light was hovering in my living room when I woke up.", "It said something strange, almost like it was warning me, and then it disappeared."], symptoms: ["My ears are ringing. Nobody's hurt.", "In the living room by the TV. The TV turned to static.", "This morning. First time ever."] },
+  ],
+  springin: [
+    { caller: "Joan Mercer", location: "Ohio", answer: "springin", transcript: ["My son set the neighbor's shed on fire and said the tree told him to.", "There's a little tree by our fence that wasn't there last month."], symptoms: ["He's fine but he won't come inside. He stands in the sun all day.", "The backyard by the fence. His shoes are full of soil.", "About two weeks, and it's getting worse."] },
+    { caller: "Hank Sorensen", location: "Ohio", answer: "springin", transcript: ["My twins stand perfectly still in the yard for hours, facing a new tree.", "They've started lying to us and hurting the dog. They were never like this."], symptoms: ["Their arms feel stiff and their skin is flaky like bark.", "In the front yard near a tree nobody planted.", "Since last weekend."] },
+  ],
+  redacted: [
+    { caller: "Unknown Caller", location: "##, OH", answer: "redacted", transcript: ["My closet door won't stay closed.", "There's ###### inside. It is rare, isn't it? Someone told me it's rare."], symptoms: ["My daughter won't talk anymore.", "The hall closet.", "Since ######."] },
+    { caller: "Unknown Caller", location: "##, OH", answer: "redacted", transcript: ["I keep seeing it in the closet. Only in the closet.", "########## ##### ####. I'm sorry, I can't say the rest."], symptoms: ["############.", "The closet under the stairs.", "I don't know. Time is wrong."] },
+  ],
+  fae: [
+    { caller: "Peggy Lund", location: "Ohio", answer: "fae", transcript: ["There's a fleshy lump growing out of the wall of my bathroom.", "The bathroom smells like a freshly mowed lawn and the lump is warm."], symptoms: ["Nobody's sick. It just gurgles a little.", "In the bathroom behind the shower. It's always steamy there.", "A few weeks. It's doubled since Sunday."] },
+    { caller: "Otis Crane", location: "Ohio", answer: "fae", transcript: ["My greenhouse has this huge pink growth on the floor, like meat.", "It smells like cut grass in there, stronger every day."], symptoms: ["My dog keeps trying to eat it, but no one's hurt.", "In the greenhouse, it's very humid in there.", "About a month."] },
   ],
 };
 export const CALL_VARIANTS: Record<string, Call[]> = Object.fromEntries(ENTRIES.map((entry) => {

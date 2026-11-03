@@ -111,7 +111,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   useEffect(() => {
     try {
       const d = Number(localStorage.getItem("hsh-maxday") || 1);
-      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(Math.floor(d), 3) : 1);
+      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(Math.floor(d), 4) : 1);
       const s = JSON.parse(localStorage.getItem("hsh-seen") || "[]");
       setSeen(Array.isArray(s) ? s.filter((x) => typeof x === "string") : []);
     } catch {
