@@ -2,7 +2,7 @@ import { ENTRIES } from "./data";
 
 export type Mail = { id: string; day: number; sender: string; subject: string; body: string[] };
 export const DAY_DATES: Record<number, string> = {
-  1: "Mon, Jan 3, 2000", 2: "Tue, Jan 4, 2000", 3: "Wed, Jan 5, 2000",
+  1: "Mon, Jan 3, 2000", 2: "Tue, Jan 4, 2000", 3: "Wed, Jan 5, 2000", 4: "Thu, Jan 6, 2000",
 };
 export const MAIL: Mail[] = [
   { id: "casey-1", day: 1, sender: "Casey — Shift Manager", subject: "Welcome to HSH / Level 1 permissions", body: [
@@ -27,6 +27,16 @@ export const MAIL: Mail[] = [
     "Daily joke: Why did the operator bring a blanket to work? Too many cold calls. On second thought, leave blankets out of the basement.",
     "About yesterday's unknown message: I didn't send it. Stay with the approved scripts and finish your shift. — Casey",
   ] },
+  { id: "casey-4", day: 4, sender: "Casey — Shift Manager", subject: "Level 4 clearance / Six new files", body: [
+    "Happy Thursday. Your Level 4 permissions are active: Attic Gnome, Fluffk, The Orb, Springin, Fae and one redacted file.",
+    "Attic gnomes are public knowledge — you may name them. They're harmless builders. Everything else today is confidential.",
+    "Fluffk callers will say someone at home seems 'wrong'. Never tell a caller to check or confront that person. Get everyone out.",
+    "If a caller finds a warm lump that smells like cut grass, arrange collection. We need every sample brought back to the office. Don't ask why the cafeteria smells like a lawn.",
+    "Write down every word the Orb says. Research wants it all. As for the redacted file: close the closet, end the call, don't ask me about it.",
+    "Daily joke: Why did the attic gnome get promoted? He really knew how to make something out of nothing.",
+    "If you get more mail with no subject, delete it. — Casey",
+  ] },
+  { id: "unknown-4", day: 4, sender: "UNKNOWN", subject: "(no subject)", body: ["human expirmentation + fae = ?"] },
 ];
 export function getMail(day: number): Mail[] { return MAIL.filter((mail) => mail.day <= day); }
 export function getNewEntryCount(day: number): number { return ENTRIES.filter((entry) => entry.day === day).length; }
