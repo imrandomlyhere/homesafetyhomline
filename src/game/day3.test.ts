@@ -34,6 +34,15 @@ describe("three call variations per pest", () => {
       selected.forEach((call) => expect(call).toBe(CALL_VARIANTS[call.answer]?.[index]));
     }
   });
+  it("shuffles call order so the first caller varies between shifts", () => {
+    for (const day of [1, 2, 3]) {
+      const scheduled = (CALLS[day] ?? []).map((call) => call.answer);
+      // Deterministic random returning 0 picks the base variant and rotates the order.
+      const rotated = getShiftCalls(day, () => 0).map((call) => call.answer);
+      expect(rotated[0]).not.toBe(scheduled[0]);
+      expect([...rotated].sort()).toEqual([...scheduled].sort());
+    }
+  });
 });
 describe("daily manager mail", () => {
   it("delivers one Casey message per day and no future messages", () => {
