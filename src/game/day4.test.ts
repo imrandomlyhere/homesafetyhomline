@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CALLS, CALL_VARIANTS, ENTRIES, getCatalog } from "./data";
-import { getMail, getNewEntryCount } from "./mail";
+import { getEarnedMail, getMail, getNewEntryCount } from "./mail";
 
 describe("Day 4 clearance", () => {
   it("unlocks six new entries and keeps a 30-file catalog", () => {
@@ -17,5 +17,11 @@ describe("Day 4 clearance", () => {
     expect(getMail(4).filter((m) => m.day === 4 && m.sender.startsWith("Casey"))).toHaveLength(1);
     expect(getMail(4).some((m) => m.body[0] === "human expirmentation + fae = ?")).toBe(true);
     expect(getMail(3).some((m) => m.body[0] === "human expirmentation + fae = ?")).toBe(false);
+  });
+  it("sends the fae message only after 4 of 6 Day 4 calls", () => {
+    expect(getEarnedMail(4, 3)).toHaveLength(0);
+    expect(getEarnedMail(4, 4).map((m) => m.id)).toEqual(["fae-truth-4"]);
+    expect(getMail(4).some((m) => m.id === "fae-truth-4")).toBe(false);
+    expect(getMail(4, ["fae-truth-4"]).some((m) => m.id === "fae-truth-4")).toBe(true);
   });
 });

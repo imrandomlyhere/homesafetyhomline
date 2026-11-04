@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { DAY_DATES, getMail } from "./mail";
 import { RetroIcon } from "./retro-icon";
 
-export function Mailbox({ day }: { day: number }) {
-  const messages = getMail(day).reverse();
+export function Mailbox({ day, unlocked = [] }: { day: number; unlocked?: string[] }) {
+  const messages = getMail(day, unlocked).reverse();
   const [selected, setSelected] = useState(messages[0]?.id ?? "");
   const [read, setRead] = useState<string[]>([]);
   const message = messages.find((mail) => mail.id === selected);

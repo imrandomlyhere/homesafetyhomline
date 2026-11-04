@@ -1,6 +1,6 @@
 import { ENTRIES } from "./data";
 
-export type Mail = { id: string; day: number; sender: string; subject: string; body: string[] };
+export type Mail = { id: string; day: number; sender: string; subject: string; body: string[]; afterCalls?: number };
 export const DAY_DATES: Record<number, string> = {
   1: "Mon, Jan 3, 2000", 2: "Tue, Jan 4, 2000", 3: "Wed, Jan 5, 2000", 4: "Thu, Jan 6, 2000",
 };
@@ -37,6 +37,23 @@ export const MAIL: Mail[] = [
     "If you get more mail with no subject, delete it. — Casey",
   ] },
   { id: "unknown-4", day: 4, sender: "UNKNOWN", subject: "(no subject)", body: ["human expirmentation + fae = ?"] },
+  { id: "fae-truth-4", day: 4, afterCalls: 4, sender: "UNKNOWN", subject: "(no subject)", body: [
+    "fae. a strange anomaly, though very strange. they grow like mold but they have organs. the organs act like human organs without a use. they even have eyes with irises and pupils, and the eyes move. they even have repressed bones in them, like finger bones.",
+    "from some research i did i found out fae is human tissue for 99.9% of it. the 0.01% is unknown. we think it's pure fae. when it's exposed to air it rapidly expands and explodes. it has gunpowder and other chemicals in it, like sulfur and even formaldehyde.",
+    "i think the orb is telling us about it. i have a recording from when it appeared in my room. i found out its vowels and it says: ##e #ae i# u#. i can see it saying THE FAE IS US. i've also found out the orb appears in houses that have fae. my house had some but it died.",
+    "i remember the fae outbreak of the 1920s, when fae was used as a weapon — true fae used as explosives, not knowing the little pieces of flesh grow into fae. it ate up most of japan at that time. it took 40 years to clean it up and we had to mind wipe the people that knew too much.",
+    "i found fae in cow meat. if a human eats fae they start acting weird. they start hiding from light and like humid spaces, often moving to humid places. in recent years 30 people went missing in brazil, and 30 specimens of fae were found in brazil. large specimens, 10 to 40 feet.",
+    "i think we have been eating stuff we should not have eaten. they say it's fine but no. we are all doomed, because i think when humans eat fae flesh they become fae.",
+    "i found a tape in the basement where they keep the fae. it said something about melting flesh, skin and bones dissolving into flesh. it showed a time lapse of a human becoming fae.",
+    "if i quit then i'll be killed. maybe turned to fae. and i found a strange structure in the basement. it seems like a laser or a syringe that stabs a person and dissolves their bone and skin.",
+  ] },
 ];
-export function getMail(day: number): Mail[] { return MAIL.filter((mail) => mail.day <= day); }
+/** Mail with afterCalls only appears once its id is in `unlocked` (earned mid-shift). */
+export function getMail(day: number, unlocked: string[] = []): Mail[] {
+  return MAIL.filter((mail) => mail.day <= day && (mail.afterCalls === undefined || unlocked.includes(mail.id)));
+}
+/** Mail earned on `day` after completing `callsDone` calls. */
+export function getEarnedMail(day: number, callsDone: number): Mail[] {
+  return MAIL.filter((mail) => mail.day === day && mail.afterCalls !== undefined && callsDone >= mail.afterCalls);
+}
 export function getNewEntryCount(day: number): number { return ENTRIES.filter((entry) => entry.day === day).length; }

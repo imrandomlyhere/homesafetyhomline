@@ -4,7 +4,7 @@ import { Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RetroIcon } from "@/game/retro-icon";
 import { CALLS, ENTRIES, getCatalog, getShiftCalls, getSymptomQuestions, type Entry } from "@/game/data";
-import { DAY_DATES, getMail, getNewEntryCount } from "@/game/mail";
+import { DAY_DATES, getEarnedMail, getMail, getNewEntryCount } from "@/game/mail";
 import { Mailbox } from "@/game/mailbox";
 import { FILE_LOAD_MS, CALL_LOAD_MS, QUESTION_LOAD_MS, textProgress } from "@/game/loading";
 import { createRetroAudio, type SoundKind } from "@/game/sounds";
@@ -40,6 +40,9 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const [phase, setPhase] = useState<Phase>(callerPage ? "working" : "desktop");
   const [shiftCalls, setShiftCalls] = useState(CALLS[initialDay] ?? []);
   const [showMail, setShowMail] = useState(false);
+  const [unlockedMail, setUnlockedMail] = useState<string[]>([]);
+  const [mailAlert, setMailAlert] = useState(false);
+  useEffect(() => { try { const v = JSON.parse(localStorage.getItem("hsh-mail") ?? "[]"); if (Array.isArray(v)) setUnlockedMail(v.filter((x) => typeof x === "string")); } catch { localStorage.removeItem("hsh-mail"); } }, []);
   const [empId, setEmpId] = useState(employee);
   const [callIdx, setCallIdx] = useState(0);
   const [pick, setPick] = useState("");
@@ -153,6 +156,8 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const next = () => {
     setAsked([]); setWaitingQuestion(null); play("computer");
     setResult(null); setPick("");
+    const earned = getEarnedMail(day, callIdx + 1).map((m) => m.id).filter((id) => !unlockedMail.includes(id));
+    if (earned.length) { const u = [...unlockedMail, ...earned]; setUnlockedMail(u); localStorage.setItem("hsh-mail", JSON.stringify(u)); setMailAlert(true); }
     const h = 9 + Math.round(((callIdx + 1) / calls.length) * 8);
     setTime(`${h > 12 ? h - 12 : h}:00 ${h >= 12 ? "PM" : "AM"}`);
     if (callIdx + 1 >= calls.length) {
@@ -170,7 +175,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
             <RetroIcon kind="folder" />
             <span>HSH Work Days</span>
           </Button>
-          <Button variant="ghost" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))} className="desktop-icon"><RetroIcon kind="mail" /><span>HSH Mail<br />{getMail(mailDay).length} messages</span></Button>
+          <Button variant="ghost" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))} className="desktop-icon"><RetroIcon kind="mail" /><span>HSH Mail<br />{getMail(mailDay, unlockedMail).length} messages</span></Button>
           </div>
         )}
 
@@ -202,7 +207,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
 
         {phase === "working" && call && (
           <div className="caller-page">
-            <header className="caller-header"><div className="flex items-center gap-3"><RetroIcon kind="phone" /><div><h1 className="font-bold text-xl">HOME SAFETY HOTLINE</h1><p className="text-xs">Operator {empId} · Day {day} · Line 1</p></div></div><Button variant="ghost" className="btn98" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))}><RetroIcon kind="mail" small />HSH Mail ({getMail(day).length})</Button></header>
+            <header className="caller-header"><div className="flex items-center gap-3"><RetroIcon kind="phone" /><div><h1 className="font-bold text-xl">HOME SAFETY HOTLINE</h1><p className="text-xs">Operator {empId} · Day {day} · Line 1</p></div></div><Button variant="ghost" className="btn98" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))}><RetroIcon kind="mail" small />HSH Mail ({getMail(day, unlockedMail).length})</Button></header>
             <div className="grid lg:grid-cols-2 gap-4 items-start">
             <Win title={`Incoming Call — Line 1 (${callIdx + 1}/${calls.length})`}>
               <div className="bg-term font-term text-xl p-3 h-64 overflow-auto">
@@ -283,7 +288,8 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
           </div>
         )}
       </div>
-      {showMail && <div className="mail-overlay" role="dialog" aria-modal="true" aria-label="HSH Mail"><Win title="HSH Mail 2000 — Inbox" className="w-full max-w-2xl max-h-[90vh] overflow-auto" onClose={() => setShowMail(false)}><Mailbox day={mailDay} /></Win></div>}
+      {mailAlert && !showMail && <div className="mail-overlay" role="alertdialog" aria-label="New mail"><Win title="HSH Mail 2000" className="w-full max-w-sm" onClose={() => setMailAlert(false)}><div className="flex items-center gap-3 text-sm"><RetroIcon kind="mail" /><p>You have 1 new message.<br />From: UNKNOWN</p></div><div className="flex justify-end gap-2 mt-3"><Button variant="ghost" className="btn98" onClick={() => { setMailAlert(false); setShowMail(true); }}>Read</Button><Button variant="ghost" className="btn98" onClick={() => setMailAlert(false)}>Later</Button></div></Win></div>}
+      {showMail && <div className="mail-overlay" role="dialog" aria-modal="true" aria-label="HSH Mail"><Win title="HSH Mail 2000 — Inbox" className="w-full max-w-2xl max-h-[90vh] overflow-auto" onClose={() => setShowMail(false)}><Mailbox day={mailDay} unlocked={unlockedMail} /></Win></div>}
       {loading && <div className="loading-overlay" role="status" aria-live="polite"><Win title="Please wait" className="w-80 max-w-full"><p className="text-sm mb-3">{loading}</p><LoadingText duration={FILE_LOAD_MS} /></Win></div>}
       <div className="win flex justify-between items-center px-2 py-1 text-sm">
         <Button variant="ghost" className="btn98 font-bold !py-0">⊞ Start</Button>
