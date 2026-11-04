@@ -212,13 +212,169 @@ export const ENTRIES: Entry[] = [
     advice: "Please don't cut it, throw it away or touch it. Leave the room as it is and keep the door closed. We'll send a crew to collect it for free — we need all of it, so please don't let anyone else take it.",
     notes: "CONFIDENTIAL: Never mention the HSH fae farm or that it is edible. Always arrange collection for the office.",
   },
+{
+  "id": "collective",
+  "name": "The Collective",
+  "latin": "Mens metallurgica",
+  "threat": "EXTREME",
+  "day": 5,
+  "description": "A giant hive mind whose connected nodes melt metal and rebuild it as other metals. Most products have no known periodic classification. Opisum is described by researchers as a gas in solid form: a rigid, porous metal that holds a gaseous structure without ordinary pressure. The mind rearranges nearby metal into channels that connect its nodes. No independent node has been found.",
+  "habitat": "Basements, workshops and scrap stores. Metal-rich households may also attract Sorter Gnomes that organize the residue.",
+  "signs": "Metal tools melting without a fire, unfamiliar alloys appearing, cold solid material that behaves like trapped gas, several metal piles reacting together.",
+  "danger": "Destroys plumbing, wiring and structural fasteners. Unknown alloys may vent hazardous gas or change state when handled. The hive mind must not be separated.",
+  "solution": "Evacuate and request HSH metallurgical containment. Do not heat, cut or collect unknown metal; never test opisum by breaking it.",
+  "advice": "Leave the house and do not touch the altered metal. Do not heat it or try to separate any pieces. Our specialist materials team is coming.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "falsebeet",
+  "name": "False Beet",
+  "latin": "Beta mendax",
+  "threat": "EXTREME",
+  "day": 5,
+  "description": "A false root vegetable related to Fae. Its beet-like outer skin conceals living tissue rather than ordinary plant fibers. Digestion triggers severe pain, followed by a change in the consumer into Fae. Early reports describe avoidance of light and a preference for humid rooms. Cooking does not establish safety.",
+  "habitat": "Vegetable beds, damp pantries and produce shipments near Fae contamination.",
+  "signs": "A beet with warm flesh-like interior, fresh-cut-grass odor, pain after eating, then hiding from light and seeking humidity.",
+  "danger": "Ingestion transforms people into Fae. Suspect produce can be mistaken for ordinary food and shared with an entire household.",
+  "solution": "Stop eating and sharing suspect produce. Seek emergency medical care for anyone who ate it and notify HSH. Leave samples untouched for containment.",
+  "advice": "Stop eating that produce and keep it away from everyone. Anyone who ate it needs emergency medical care now. Tell the medical team exactly what was eaten; we will collect the remaining samples.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "carniage",
+  "name": "Carniage",
+  "latin": "Falx marinus",
+  "threat": "EXTREME",
+  "day": 5,
+  "description": "A sea-dwelling sickle species that can enter connected household water pipes. Its flexible body follows flooded channels inland and expands around prey at pipe openings. Unlike tiny Pipe Sickles, documented attacks involve the consumption of whole people. Its hooked limbs leave deep marine-silt-lined grooves.",
+  "habitat": "Sea-connected drains, coastal plumbing, flooded pipes and water access tunnels.",
+  "signs": "Family members consumed at a pipe opening, heavy scraping below drains, briny water and broad hooked grooves.",
+  "danger": "Can kill adults at a plumbing opening. Attempts to flush, dismantle or reach into the pipe expose more people.",
+  "solution": "Evacuate away from plumbing. Call emergency services for missing or injured people and request HSH aquatic containment. Do not apply ordinary Pipe Sickle treatment.",
+  "advice": "Move everyone away from the plumbing and leave the building. Do not reach into or open any pipe. Call emergency services for your missing family member; our urgent-response team is coming.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "floorroots",
+  "name": "Floor Roots",
+  "latin": "Radix subflooris",
+  "threat": "EXTREME",
+  "day": 5,
+  "description": "Roots that grow within floors and wrap around humanoid objects before pulling them beneath the surface. Upright dolls and mannequins can disappear first, but the same mechanism targets people. The opening often closes behind the roots, leaving a floor that looks intact.",
+  "habitat": "Beneath floorboards, carpets and ground-level rooms; seams conceal emerging tendrils.",
+  "signs": "Children disappearing on the floor, roots curling around dolls or mannequins, objects pulled under intact boards.",
+  "danger": "Missing children and adults may be taken beneath the floor. Standing close to an active seam is unsafe; tearing boards up can expose additional roots.",
+  "solution": "Keep people off affected floors. Evacuate by a safe path, call emergency services for missing people and request HSH removal. Do not bait the roots with a person.",
+  "advice": "Keep everyone off that floor and leave by a safe route. Do not pull up the boards or reach into gaps. Report your missing child to emergency services; we are sending a specialist team.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "palu",
+  "name": "Palu",
+  "latin": "Canis inversus",
+  "threat": "EXTREME",
+  "day": 5,
+  "description": "A creature that mimics a household dog and behaves convincingly like it until attacking its person. It eats, plays and responds to familiar commands during concealment. After an attack its joints bend backward, exposing the disguise. Unlike a Mimic, the abnormal joints and behavior need not be visible beforehand.",
+  "habitat": "Homes with dogs; occupies the replaced animal’s usual sleeping and feeding places.",
+  "signs": "A formerly normal dog suddenly attacks its owner, then develops backward joints; earlier behavior appeared entirely ordinary.",
+  "danger": "A convincing disguise allows close access to people. An attack may be followed by further attacks; approaching to inspect joints is unsafe.",
+  "solution": "Separate survivors from the animal without confrontation, evacuate and obtain urgent medical care for bites. Arrange HSH containment; do not attempt home restraint.",
+  "advice": "Get away from the animal and leave with everyone you can reach safely. Do not approach or restrain it. Seek urgent medical care for the bite; our emergency animal team is coming.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "alter",
+  "name": "The Alter",
+  "latin": "Instrumentum postorbitalis",
+  "threat": "EXTREME",
+  "day": 5,
+  "description": "An object that appears in a basement exactly two days after an Orb manifestation in the same house. It assembles objects without visible material input and produces ######## and other anomalies. The mechanism, purpose and origin remain redacted. Recorded output may continue after occupants leave.",
+  "habitat": "Basements in houses visited by the Orb two days earlier.",
+  "signs": "A new basement object after a glowing sphere spoke and vanished; objects and anomalies appearing nearby without explanation.",
+  "danger": "Unknown generated anomalies can spread beyond the basement. Operating, moving or dismantling the device may increase output.",
+  "solution": "Evacuate and record the Orb’s appearance date from memory. Do not touch the device or its products. Dispatch HSH containment for both the device and generated anomalies.",
+  "advice": "Leave the basement untouched and get everyone outside. Do not handle the object or anything it produces. Tell me when the light appeared; our specialist team will secure the house.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "hord",
+  "name": "The Hord",
+  "latin": "Attractor invisibilis",
+  "threat": "HIGH",
+  "day": 5,
+  "description": "A giant invisible, odorless object that attracts inanimate objects. It moves around the house, carrying an apparent orbit of furniture, utensils and clutter while remaining unseen. No smell identifies it. The presence of an Attic Gnome, Common Sickle or Sorter Gnome in the household suppresses the attraction for as long as that resident remains.",
+  "habitat": "Rooms with displaced inanimate objects, large empty spaces and shifting concentrations of clutter.",
+  "signs": "Objects drawn toward an invisible moving center, no odor or visible body, attraction stopping when an appropriate gnome or sickle is present.",
+  "danger": "Heavy furniture can trap or strike people. A Common Sickle is itself dangerous, so residents must never capture or introduce one themselves.",
+  "solution": "Arrange a supervised Attic Gnome or Sorter Gnome placement through HSH. Maintain the gnome’s residence. A resident Common Sickle also suppresses the Hord but requires separate urgent containment assessment.",
+  "advice": "Stay away from moving furniture. We can arrange a sorter or attic gnome to stay in the house and stop the attraction. Keep it resident afterward. Do not capture or bring in any dangerous animal yourself.",
+  "confidential": true,
+  "notes": "CONFIDENTIAL: Use the approved cover script; do not name this anomaly to callers."
+},
+
+{
+  "id": "sortergnome",
+  "name": "Sorter Gnome",
+  "latin": "Gnomus ordinator",
+  "threat": "LOW",
+  "day": 5,
+  "description": "A common, publicly known gnome subspecies that sorts rooms and eats household grime. Often found in houses with the Hord or Collective, it organizes displaced material and works with Attic Gnomes to prepare building supplies. HSH has office residents: say hello and hold them gently if they accept, but never drop them. Their brittle bodies shatter on impact. They copy people’s speech, so do not insult them.",
+  "habitat": "Cluttered rooms, offices, recycling stores and homes containing the Hord or Collective.",
+  "signs": "Objects sorted into neat groups, grime eaten away, small gnomes repeating human speech and carrying supplies to attic builders.",
+  "danger": "Usually peaceful. Fragile bodies shatter if dropped. Repeated rude speech can upset a colony; unknown Collective alloys remain unsafe even if neatly sorted.",
+  "solution": "Allow accepted residents to organize and provide safe scraps. Hold only with consent close to a secure surface. Keep them away from unknown alloys during containment.",
+  "advice": "Those are sorter gnomes. You can greet them and let them tidy. If one agrees to be held, support it carefully and never drop it — they can shatter. Be kind; they copy what you say.",
+  "confidential": false,
+  "notes": "PUBLIC: You may name this gnome to the caller."
+},
+
+{
+  "id": "travelgnome",
+  "name": "Travel Gnome",
+  "latin": "Gnomus viator",
+  "threat": "HIGH",
+  "day": 5,
+  "description": "A rare gnome subspecies that rides in suitcases to move into new households with travelers. Little else is established. Being seen or threatened can provoke an attack. A gnome that has developed trust in one person defends that person against robbers and people who are not its trusted companion; this protection is not automatically extended to family or guests.",
+  "habitat": "Suitcases, luggage compartments and houses recently visited by travelers.",
+  "signs": "A small gnome emerging from luggage, attacks after discovery or threats, protective behavior toward a single trusted traveler.",
+  "danger": "Untrusted people can be attacked, including household guests. Opening luggage to search for it or forcing contact can provoke it.",
+  "solution": "Back away and keep guests away. Do not open its hiding place, threaten or grab it. Ask HSH for supervised relocation or a household safety assessment if trust exists.",
+  "advice": "Back away from the suitcase and do not force it open. Keep visitors away and do not threaten the gnome. If it trusts you, that does not mean it trusts everyone else; we can arrange a safe assessment.",
+  "confidential": false,
+  "notes": "PUBLIC: You may name this gnome to the caller."
+},
+
+{
+  "id": "gardengnome",
+  "name": "Garden Gnome",
+  "latin": "Gnomus hortensis",
+  "threat": "MODERATE",
+  "day": 5,
+  "description": "A gnome subspecies sold in stores worldwide that resides in gardens. Active residents collect recycling for Sorter Gnomes to organize and Attic Gnomes to build with. Like Travel Gnomes, they attack when threatened. Stillness in daylight is not evidence that a gnome is merely ornamental.",
+  "habitat": "Gardens, garden shops and recycling routes between outdoor bins and household gnome colonies.",
+  "signs": "Store-bought garden gnomes moving at night, recycling delivered to attic builders, attacks after kicking or threatening a gnome.",
+  "danger": "Usually cooperative, but threats provoke attacks. Children and pets must not kick, grab or damage a resident.",
+  "solution": "Leave the gnome unthreatened and keep a safe recycling supply. Resolve unwanted residence through the seller or supervised HSH relocation; never force removal.",
+  "advice": "That is a garden gnome. Leave it unthreatened and it can help supply recycling to your other gnomes. Keep children and pets from kicking or grabbing it. We can arrange relocation if you do not want it.",
+  "confidential": false,
+  "notes": "PUBLIC: You may name this gnome to the caller."
+}
 ];
 
-// 10 permanently classified files (sorted by hidden name)
-const HIDDEN = [
-  "Drywall Eel", "Fridge Tick", "Gutter Shrike", "Hollow Wasp", "Lamp Beetle",
-  "Night Possum", "Oven Crab", "Quiet Spider", "Television Fly", "Vent Lamprey",
-];
+// All thirty catalog slots now have authored entries.
+const HIDDEN: string[] = [];
 
 export type Slot = { key: string; sort: string; entry?: Entry };
 
@@ -306,6 +462,148 @@ export const CALLS: Record<number, Call[]> = {
     { caller: "Unknown Caller", location: "##, OH", answer: "redacted", transcript: ["There is something in my closet.", "I can't describe it. I tried. It's ###### and it ######.", "Please. What do I do? It knows I'm on the phone."], symptoms: ["I don't know. I can't remember what my hands did.", "The bedroom closet. The door is open a crack.", "It has always been there. I only just noticed."] },
     { caller: "Gene Tolliver", location: "Portsmouth, OH", answer: "fae", transcript: ["There's a big warm pink lump growing in my basement.", "It smells exactly like fresh cut grass down there, but it's winter.", "It's bigger every morning. It's the size of a couch now."], symptoms: ["Nobody's sick. It doesn't move or bite.", "The basement by the water heater. It's really humid down there.", "It started as a softball maybe a month ago."] },
   ],
+  5: [
+  {
+    "caller": "Martha Vale",
+    "location": "Dayton, OH",
+    "answer": "collective",
+    "transcript": [
+      "My tools melted without a fire. The puddle turned into a metal I have never seen.",
+      "There is a solid piece full of bubbles, almost like somebody made gas solid. Every pile moves at the same time."
+    ],
+    "symptoms": [
+      "No one is hurt. We left because the metal gave off a strange vapor.",
+      "The cellar workshop; the strange metal piles all react together.",
+      "The tools changed overnight. More metal is joining the piles today."
+    ]
+  },
+  {
+    "caller": "Leon Briggs",
+    "location": "Dayton, OH",
+    "answer": "falsebeet",
+    "transcript": [
+      "My husband ate a beet that was warm inside and smelled like cut grass.",
+      "He had terrible pain. Now he hides from the lights and wants to stay in the damp bathroom."
+    ],
+    "symptoms": [
+      "He is in severe pain after eating it. I have called for medical help.",
+      "The vegetable came from our garden; he now stays in the humid bathroom.",
+      "He ate it last night. The light avoidance began this morning."
+    ]
+  },
+  {
+    "caller": "Celia Ross",
+    "location": "Dayton, OH",
+    "answer": "carniage",
+    "transcript": [
+      "My brother was working beside the open sewer pipe. Something dragged him into it.",
+      "The water smells like the ocean and something huge is scraping under the sink."
+    ],
+    "symptoms": [
+      "My brother is missing. Emergency services are already coming.",
+      "At the open sewer pipe and kitchen drain; the water smells of salt.",
+      "We heard scraping yesterday. He was taken this morning."
+    ]
+  },
+  {
+    "caller": "Peter Dunn",
+    "location": "Dayton, OH",
+    "answer": "floorroots",
+    "transcript": [
+      "Roots came through the floor and wrapped around my daughter's tall doll.",
+      "They pulled it under. Now my son is missing and the boards have shut again."
+    ],
+    "symptoms": [
+      "My son is missing. I have called emergency services and kept everyone away.",
+      "The living-room floor; tendrils wrap around upright dolls near the seams.",
+      "The doll vanished yesterday. My son disappeared this morning."
+    ]
+  },
+  {
+    "caller": "Alice Field",
+    "location": "Dayton, OH",
+    "answer": "palu",
+    "transcript": [
+      "Our dog was playing fetch normally, then suddenly attacked my husband.",
+      "Only after the bite did its knees bend backward. Yesterday it looked completely normal."
+    ],
+    "symptoms": [
+      "My husband has a bite and is getting medical care. We are outside.",
+      "In our usual dog bed by the kitchen; backward joints appeared after the attack.",
+      "The dog acted normal for weeks. It attacked an hour ago."
+    ]
+  },
+  {
+    "caller": "Jonah Wells",
+    "location": "Dayton, OH",
+    "answer": "alter",
+    "transcript": [
+      "A glowing ball spoke in our hall two days ago. Today there is a strange device in the basement.",
+      "It makes objects from nothing. Something beside it is ########."
+    ],
+    "symptoms": [
+      "Nobody is injured. We have left the house without touching its output.",
+      "The basement; an object appeared exactly two days after the glowing ball.",
+      "The ball appeared two days ago; the device appeared this morning."
+    ]
+  },
+  {
+    "caller": "Ruth Hale",
+    "location": "Dayton, OH",
+    "answer": "hord",
+    "transcript": [
+      "All our chairs slide toward an empty spot. There is nothing there and no smell.",
+      "The spot moves through the house and everything follows it, even the forks."
+    ],
+    "symptoms": [
+      "No one is hurt yet. We are staying clear of the moving furniture.",
+      "A moving empty center in the living room, pulling in chairs and utensils.",
+      "Four days of attraction; the invisible center moved upstairs today."
+    ]
+  },
+  {
+    "caller": "Victor Morse",
+    "location": "Dayton, OH",
+    "answer": "sortergnome",
+    "transcript": [
+      "Little gnomes sorted my entire messy office into piles and ate the grime off the tiles.",
+      "One repeated exactly what I said. They carry cardboard up to the builders in the attic."
+    ],
+    "symptoms": [
+      "Nobody is hurt. One small gnome copied my greeting word for word.",
+      "The office and stairs to the attic, with sorted piles and clean tiles.",
+      "They arrived last week and tidy every night."
+    ]
+  },
+  {
+    "caller": "Dana Locke",
+    "location": "Dayton, OH",
+    "answer": "travelgnome",
+    "transcript": [
+      "A tiny gnome jumped out of my suitcase after our trip. When I looked straight at it, it attacked.",
+      "It hides in the bag again whenever anyone comes near."
+    ],
+    "symptoms": [
+      "I have a scratch and am seeking care. Nobody else will approach the bag.",
+      "Inside the suitcase we brought home from our trip yesterday.",
+      "It arrived with yesterday’s luggage and attacked when discovered today."
+    ]
+  },
+  {
+    "caller": "Edith Moss",
+    "location": "Dayton, OH",
+    "answer": "gardengnome",
+    "transcript": [
+      "The garden gnome I bought at the store carries recycling into the attic at night.",
+      "My son kicked it and it chased him. I thought it was a decoration."
+    ],
+    "symptoms": [
+      "My son has a small scratch and is receiving care. He is keeping away now.",
+      "The garden and recycling bin, with deliveries to the attic builders.",
+      "We bought it last month. It attacked only after being kicked today."
+    ]
+  }
+],
 };
 
 // Authored alternatives: one variant is selected for each scheduled call per shift.
@@ -390,6 +688,306 @@ const ALTERNATE_CALLS: Record<string, Call[]> = {
     { caller: "Peggy Lund", location: "Ohio", answer: "fae", transcript: ["There's a fleshy lump growing out of the wall of my bathroom.", "The bathroom smells like a freshly mowed lawn and the lump is warm."], symptoms: ["Nobody's sick. It just gurgles a little.", "In the bathroom behind the shower. It's always steamy there.", "A few weeks. It's doubled since Sunday."] },
     { caller: "Otis Crane", location: "Ohio", answer: "fae", transcript: ["My greenhouse has this huge pink growth on the floor, like meat.", "It smells like cut grass in there, stronger every day."], symptoms: ["My dog keeps trying to eat it, but no one's hurt.", "In the greenhouse, it's very humid in there.", "About a month."] },
   ],
+"collective": [
+  {
+    "caller": "Owen Curtis",
+    "location": "Columbus, OH",
+    "answer": "collective",
+    "transcript": [
+      "The metal shelves in my garage flowed together while they were cold.",
+      "Now they are several strange metals connected by thin channels. When one shakes, all of them shake."
+    ],
+    "symptoms": [
+      "Everyone is outside. Nobody has touched the unfamiliar alloys.",
+      "In the garage around cold shelves and interconnected alloy channels.",
+      "Three days of rearranging metal, with the channels growing this morning."
+    ]
+  },
+  {
+    "caller": "Nell Turner",
+    "location": "Toledo, OH",
+    "answer": "collective",
+    "transcript": [
+      "Our copper pipes became a silver metal and then something porous and rigid.",
+      "The scraps under the stairs pulse together. There is no heat or flame anywhere."
+    ],
+    "symptoms": [
+      "Nobody is injured, but a pipe is gone and we have evacuated.",
+      "Under the basement stairs; changed pipes lead to pulsing metal scraps.",
+      "The first pipe changed yesterday. The scraps connected today."
+    ]
+  }
+],
+"falsebeet": [
+  {
+    "caller": "Janet Brewer",
+    "location": "Columbus, OH",
+    "answer": "falsebeet",
+    "transcript": [
+      "The beets in our pantry are pink and fleshy under the skin.",
+      "My sister tasted one, doubled over with pain, and now keeps shutting the curtains and asking for steam."
+    ],
+    "symptoms": [
+      "My sister is ill after tasting one. Nobody else has eaten any.",
+      "A damp pantry full of flesh-like beets; my sister is avoiding the windows.",
+      "We bought them two days ago. She tasted one an hour ago."
+    ]
+  },
+  {
+    "caller": "Calvin Roach",
+    "location": "Toledo, OH",
+    "answer": "falsebeet",
+    "transcript": [
+      "A root from my greenhouse looked just like a beet, but its middle was warm meat.",
+      "My son ate some and his stomach hurts badly. He crawled into the wet laundry room away from sunlight."
+    ],
+    "symptoms": [
+      "My son is in pain after eating the root. An ambulance is on its way.",
+      "The greenhouse produce and our humid laundry room, away from sunlight.",
+      "The root was harvested today. His behavior changed within hours."
+    ]
+  }
+],
+"carniage": [
+  {
+    "caller": "Milo Hart",
+    "location": "Columbus, OH",
+    "answer": "carniage",
+    "transcript": [
+      "My wife went to look into a flooded pipe in the cellar and something ate her.",
+      "There are enormous hooked scratches and salty sludge at the opening."
+    ],
+    "symptoms": [
+      "My wife is missing and the rest of us are outside awaiting emergency help.",
+      "The flooded cellar pipe, with broad claw grooves and marine sludge.",
+      "The flood started two nights ago. The attack happened today."
+    ]
+  },
+  {
+    "caller": "Harriet Webb",
+    "location": "Toledo, OH",
+    "answer": "carniage",
+    "transcript": [
+      "Our dock-house drain made heavy scraping noises. My father opened the inspection pipe and vanished into it.",
+      "A claw came out after him. It was much bigger than a little drain bug."
+    ],
+    "symptoms": [
+      "My father is missing. Nobody will go back near that opening.",
+      "The dock-house inspection pipe connected to seawater, not a small sink leak.",
+      "Scraping for a week, then the attack when the pipe was opened today."
+    ]
+  }
+],
+"floorroots": [
+  {
+    "caller": "Tina Amos",
+    "location": "Columbus, OH",
+    "answer": "floorroots",
+    "transcript": [
+      "A mannequin in my sewing room sank below the boards with roots around its legs.",
+      "My daughter went into that room and has not come out. The floor looks normal again."
+    ],
+    "symptoms": [
+      "My daughter is missing and the room is empty. We are waiting outside.",
+      "Under the sewing-room boards; roots took a person-shaped mannequin.",
+      "The mannequin disappeared last night. My daughter is missing today."
+    ]
+  },
+  {
+    "caller": "Leo Frost",
+    "location": "Toledo, OH",
+    "answer": "floorroots",
+    "transcript": [
+      "Our children said vines grabbed their toy soldiers through the carpet.",
+      "Today one child disappeared from the same spot. Roots were curled into the shape of legs."
+    ],
+    "symptoms": [
+      "One child is missing. Everyone else is accounted for and outside.",
+      "Under the playroom carpet; upright toys disappeared into closing seams.",
+      "The toys vanished over three days. The child went missing today."
+    ]
+  }
+],
+"palu": [
+  {
+    "caller": "Steven Brook",
+    "location": "Columbus, OH",
+    "answer": "palu",
+    "transcript": [
+      "My terrier ate breakfast and answered every command, then lunged at my daughter.",
+      "Now its back legs fold the wrong way. It never looked strange before the attack."
+    ],
+    "symptoms": [
+      "My daughter has a wound and an ambulance is coming. We have left the house.",
+      "The hallway where the terrier attacked; its joints changed afterward.",
+      "It was normal this morning until the sudden attack."
+    ]
+  },
+  {
+    "caller": "Pam Trent",
+    "location": "Toledo, OH",
+    "answer": "palu",
+    "transcript": [
+      "Our old dog greeted me like always and brought me his toy. Then he bit my arm.",
+      "After that every joint bent backward. He had been eating and sleeping normally."
+    ],
+    "symptoms": [
+      "My arm is injured. I am away from the animal and seeking care.",
+      "At the front door; the dog’s legs changed after it bit me.",
+      "The attack was today. There were no earlier warning signs."
+    ]
+  }
+],
+"alter": [
+  {
+    "caller": "Beth Arlen",
+    "location": "Columbus, OH",
+    "answer": "alter",
+    "transcript": [
+      "Two nights after that talking sphere vanished, a structure showed up by the cellar stairs.",
+      "Empty space beside it keeps filling with objects and impossible little creatures."
+    ],
+    "symptoms": [
+      "Everyone is outside. We are frightened but have not touched it.",
+      "At the cellar stairs, surrounded by objects that were not carried inside.",
+      "The sphere was two nights ago. The structure began producing things today."
+    ]
+  },
+  {
+    "caller": "Irene Voss",
+    "location": "Toledo, OH",
+    "answer": "alter",
+    "transcript": [
+      "We reported an orb on Wednesday. It is Friday and an object has appeared under our house.",
+      "There are new objects and ######## around it every time I look from the doorway."
+    ],
+    "symptoms": [
+      "No one is hurt. We stopped looking and evacuated.",
+      "In the basement beneath our house, where objects appear by themselves.",
+      "Two days between the light’s visit and today’s new basement object."
+    ]
+  }
+],
+"hord": [
+  {
+    "caller": "Keith Jensen",
+    "location": "Columbus, OH",
+    "answer": "hord",
+    "transcript": [
+      "My tools hover around a giant empty space in the garage. It smells of absolutely nothing.",
+      "When our attic’s tiny builder came downstairs the pulling stopped, then started when it left the house."
+    ],
+    "symptoms": [
+      "Nobody is injured. A shelf nearly fell, so we are outside now.",
+      "The garage’s invisible moving center; the resident attic builder briefly stopped it.",
+      "A week of pulling. It stopped yesterday only while the gnome was inside."
+    ]
+  },
+  {
+    "caller": "Simon Reed",
+    "location": "Toledo, OH",
+    "answer": "hord",
+    "transcript": [
+      "Our clutter follows something huge that I cannot see or smell.",
+      "A small sorting gnome used to live here and none of this happened until it moved out."
+    ],
+    "symptoms": [
+      "Nobody is injured; we keep away from the attracted objects.",
+      "Through the downstairs rooms, where objects follow an unseen moving center.",
+      "It began two days after our sorting gnome left last week."
+    ]
+  }
+],
+"sortergnome": [
+  {
+    "caller": "Amy Lowell",
+    "location": "Columbus, OH",
+    "answer": "sortergnome",
+    "transcript": [
+      "Our tiny visitors put every spoon in order and ate the sticky dirt behind the stove.",
+      "One asked to sit in my hand and copied my voice. Are they safe to hold?"
+    ],
+    "symptoms": [
+      "Everybody is fine. I have not picked one up yet because it looks fragile.",
+      "The kitchen, where small gnomes sort utensils and clean up grime.",
+      "Five days of nightly sorting and repeated conversation."
+    ]
+  },
+  {
+    "caller": "Lena Moss",
+    "location": "Toledo, OH",
+    "answer": "sortergnome",
+    "transcript": [
+      "There are little sorting people near the strange metal in our workshop.",
+      "They arrange scraps and repeat us talking. Some take recycling to the attic gnomes."
+    ],
+    "symptoms": [
+      "Nobody has touched the strange metal. The gnomes just repeat our words.",
+      "The workshop’s sorted scrap piles and the route to the attic builders.",
+      "The gnomes have been here for a month; the unfamiliar metal appeared today."
+    ]
+  }
+],
+"travelgnome": [
+  {
+    "caller": "Paul Avery",
+    "location": "Columbus, OH",
+    "answer": "travelgnome",
+    "transcript": [
+      "Something rode home in my travel case. It attacked my neighbor when he threatened to toss the bag out.",
+      "It stays in the suitcase and only comes out when I am alone."
+    ],
+    "symptoms": [
+      "My neighbor was bitten and is getting medical help. We are keeping away.",
+      "The travel case in the spare room, where the gnome hides from visitors.",
+      "Since I returned three days ago; the attack was today."
+    ]
+  },
+  {
+    "caller": "Mark Doyle",
+    "location": "Toledo, OH",
+    "answer": "travelgnome",
+    "transcript": [
+      "A gnome has traveled in my suitcase for months and seems to trust me.",
+      "It chased off a robber, but now it lunges at my guests too."
+    ],
+    "symptoms": [
+      "I am unharmed, but a guest was scratched. Visitors are staying away.",
+      "My suitcase and the doorway; it guards me but attacks other people.",
+      "Months of trust, but the attacks on guests began this week."
+    ]
+  }
+],
+"gardengnome": [
+  {
+    "caller": "Grace Nolan",
+    "location": "Columbus, OH",
+    "answer": "gardengnome",
+    "transcript": [
+      "Our shop-bought gnome hands cans to the little sorting gnomes through the back door.",
+      "When I threatened to smash it, it came after me."
+    ],
+    "symptoms": [
+      "I am safe inside now. Nobody else has threatened or touched it.",
+      "The flower bed and back door, supplying recycling to sorter gnomes.",
+      "It has supplied cans for weeks. The attack followed my threat today."
+    ]
+  },
+  {
+    "caller": "Fred Keene",
+    "location": "Toledo, OH",
+    "answer": "gardengnome",
+    "transcript": [
+      "The gnome from the garden center moves bottles to our attic gnomes every night.",
+      "Our dog growled and tried to bite it, and the gnome attacked back."
+    ],
+    "symptoms": [
+      "The dog is injured and being seen by a vet. We have separated it from the garden.",
+      "The garden recycling pile, where supplies leave for the attic each night.",
+      "We have had the gnome two weeks. The dog threatened it this morning."
+    ]
+  }
+],
 };
 export const CALL_VARIANTS: Record<string, Call[]> = Object.fromEntries(ENTRIES.map((entry) => {
   const original = Object.values(CALLS).flat().find((call) => call.answer === entry.id);
@@ -403,8 +1001,10 @@ export function getShiftCalls(day: number, random: () => number = Math.random): 
   // Shuffle call order every shift so no pest is always the first caller.
   for (let i = scheduled.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));
-    const temp = scheduled[i]!;
-    scheduled[i] = scheduled[j]!;
+    const temp = scheduled[i];
+    const other = scheduled[j];
+    if (!temp || !other) continue;
+    scheduled[i] = other;
     scheduled[j] = temp;
   }
   return scheduled;
