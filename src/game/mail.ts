@@ -2,7 +2,7 @@ import { ENTRIES } from "./data";
 
 export type Mail = { id: string; day: number; sender: string; subject: string; body: string[]; afterCalls?: number };
 export const DAY_DATES: Record<number, string> = {
-  1: "Mon, Jan 3, 2000", 2: "Tue, Jan 4, 2000", 3: "Wed, Jan 5, 2000", 4: "Thu, Jan 6, 2000",
+  1: "Mon, Jan 3, 2000", 2: "Tue, Jan 4, 2000", 3: "Wed, Jan 5, 2000", 4: "Thu, Jan 6, 2000", 5: "Fri, Jan 7, 2000",
 };
 export const MAIL: Mail[] = [
   { id: "casey-1", day: 1, sender: "Casey — Shift Manager", subject: "Welcome to HSH / Level 1 permissions", body: [
@@ -35,6 +35,14 @@ export const MAIL: Mail[] = [
     "Write down every word the Orb says. Research wants it all. As for the redacted file: close the closet, end the call, don't ask me about it.",
     "Daily joke: Why did the attic gnome get promoted? He really knew how to make something out of nothing.",
     "If you get more mail with no subject, delete it. — Casey",
+  ] },
+  { id: "casey-5", day: 5, sender: "Casey — Shift Manager", subject: "Level 5 clearance / Ten new files", body: [
+    "Happy Friday! Level 5 is active: The Collective, False Beet, Carniage, Floor Roots, Palu, The Alter, The Hord, Sorter Gnome, Travel Gnome and Garden Gnome.",
+    "Sorter and Garden Gnomes are public knowledge. We have a few sorter gnomes running around the office — say hi, you may hold them, but don't drop them. They shatter. And they copy you, so say nothing bad about them.",
+    "A Hord is fixed by having an attic gnome, sorter gnome or common sickle in the house. If an Orb visited two days ago, check the basement for an Alter — from a distance.",
+    "Anyone who ate a beet that wasn't a beet: hospital, now. Do not let them eat anything else.",
+    "You also have access to the break room radio now. Ignore anything they say about our cafeteria.",
+    "Daily joke: Why did the sorter gnome break up with the travel gnome? Too much baggage. — Casey",
   ] },
   { id: "unknown-4", day: 4, sender: "UNKNOWN", subject: "(no subject)", body: ["human expirmentation + fae = ?"] },
   { id: "fae-truth-4", day: 4, afterCalls: 4, sender: "UNKNOWN", subject: "(no subject)", body: [

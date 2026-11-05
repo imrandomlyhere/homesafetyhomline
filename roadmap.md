@@ -11,6 +11,6 @@
 - [x] Add optional dial-up, computer, and phone sounds.
 - [x] Lengthen loading and use advancing ASCII progress bars; verify the call flow.
 - [x] Add Day 4 (six entries, calls, Casey + no-subject mail).
-- [ ] Add Day 5's ten entities, randomized three-variant calls, and Casey mail.
-- [ ] Add post-Day-4 spoken radio and a shift-performance graph tab.
-- [ ] Verify Day 4 unlock, Day 5 shift, radio, and graph.
+- [x] Add Day 5's ten entities, randomized three-variant calls, and Casey mail.
+- [x] Add post-Day-4 spoken radio and a shift-performance graph tab.
+- [x] Verify Day 4 unlock, Day 5 shift, radio, and graph.

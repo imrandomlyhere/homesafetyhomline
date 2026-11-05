@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { LineChart, Radio, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RetroIcon } from "@/game/retro-icon";
 import { CALLS, ENTRIES, getCatalog, getShiftCalls, getSymptomQuestions, type Entry } from "@/game/data";
@@ -8,6 +8,8 @@ import { DAY_DATES, getEarnedMail, getMail, getNewEntryCount } from "@/game/mail
 import { Mailbox } from "@/game/mailbox";
 import { FILE_LOAD_MS, CALL_LOAD_MS, QUESTION_LOAD_MS, textProgress } from "@/game/loading";
 import { createRetroAudio, type SoundKind } from "@/game/sounds";
+import { RADIO_NEWS, RADIO_UNLOCK_DAY } from "@/game/radio";
+import { parseHistory, percent, trend, type ShiftRecord } from "@/game/performance";
 
 function LoadingText({ duration }: { duration: number }) {
   const [progress, setProgress] = useState(0);
@@ -60,6 +62,23 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const [soundOn, setSoundOn] = useState(false);
   const [audioError, setAudioError] = useState("");
   const audio = useRef<ReturnType<typeof createRetroAudio> | null>(null);
+  const [history, setHistory] = useState<ShiftRecord[]>([]);
+  const [showGraph, setShowGraph] = useState(false);
+  const [showRadio, setShowRadio] = useState(false);
+  const [newsIdx, setNewsIdx] = useState(0);
+  const [speaking, setSpeaking] = useState(false);
+  const stopSpeech = () => { if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); setSpeaking(false); };
+  const speak = (i: number) => {
+    setNewsIdx(i);
+    if (typeof speechSynthesis === "undefined") return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(RADIO_NEWS[i] ?? "");
+    u.rate = 0.95; u.pitch = 0.8;
+    u.onend = () => { if (i + 1 < RADIO_NEWS.length) speak(i + 1); else setSpeaking(false); };
+    setSpeaking(true);
+    speechSynthesis.speak(u);
+  };
+  useEffect(() => () => { if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); }, []);
   const play = (kind: SoundKind) => { if (soundOn) audio.current?.play(kind); };
   const toggleSound = () => {
     try {
@@ -114,7 +133,8 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   useEffect(() => {
     try {
       const d = Number(localStorage.getItem("hsh-maxday") || 1);
-      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(Math.floor(d), 4) : 1);
+      setMaxDay(Number.isFinite(d) && d >= 1 ? Math.min(Math.floor(d), Math.max(...Object.keys(CALLS).map(Number))) : 1);
+      setHistory(parseHistory(localStorage.getItem("hsh-history")));
       const s = JSON.parse(localStorage.getItem("hsh-seen") || "[]");
       setSeen(Array.isArray(s) ? s.filter((x) => typeof x === "string") : []);
     } catch {
@@ -161,6 +181,8 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
     const h = 9 + Math.round(((callIdx + 1) / calls.length) * 8);
     setTime(`${h > 12 ? h - 12 : h}:00 ${h >= 12 ? "PM" : "AM"}`);
     if (callIdx + 1 >= calls.length) {
+      const h2 = [...parseHistory(localStorage.getItem("hsh-history")), { day, score, total: calls.length }];
+      localStorage.setItem("hsh-history", JSON.stringify(h2)); setHistory(h2);
       if (day + 1 > maxDay && CALLS[day + 1]) { setMaxDay(day + 1); localStorage.setItem("hsh-maxday", String(day + 1)); }
       setPhase("summary");
     } else { setConnecting(true); setCallIdx(callIdx + 1); }
@@ -290,13 +312,46 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
       </div>
       {mailAlert && !showMail && <div className="mail-overlay" role="alertdialog" aria-label="New mail"><Win title="HSH Mail 2000" className="w-full max-w-sm" onClose={() => setMailAlert(false)}><div className="flex items-center gap-3 text-sm"><RetroIcon kind="mail" /><p>You have 1 new message.<br />From: UNKNOWN</p></div><div className="flex justify-end gap-2 mt-3"><Button variant="ghost" className="btn98" onClick={() => { setMailAlert(false); setShowMail(true); }}>Read</Button><Button variant="ghost" className="btn98" onClick={() => setMailAlert(false)}>Later</Button></div></Win></div>}
       {showMail && <div className="mail-overlay" role="dialog" aria-modal="true" aria-label="HSH Mail"><Win title="HSH Mail 2000 — Inbox" className="w-full max-w-2xl max-h-[90vh] overflow-auto" onClose={() => setShowMail(false)}><Mailbox day={mailDay} unlocked={unlockedMail} /></Win></div>}
+      {showGraph && <div className="mail-overlay" role="dialog" aria-label="Performance"><Win title="Performance.exe — Shift Accuracy" className="w-full max-w-xl" onClose={() => setShowGraph(false)}><PerformanceGraph history={history} /></Win></div>}
+      {showRadio && <div className="mail-overlay" role="dialog" aria-label="HSH Radio"><Win title="WHSH News Radio 88.1 FM" className="w-full max-w-lg" onClose={() => { stopSpeech(); setShowRadio(false); }}>
+        <div className="bg-term font-term text-lg p-3 h-48 overflow-auto"><p>&gt; {speaking ? "ON AIR" : "STANDBY"} · Bulletin {newsIdx + 1}/{RADIO_NEWS.length}</p><p className="mt-2">{RADIO_NEWS[newsIdx]}</p></div>
+        <div className="flex gap-2 mt-3">
+          <Button variant="ghost" className="btn98" onClick={() => speak(newsIdx)}>▶ Play</Button>
+          <Button variant="ghost" className="btn98" onClick={stopSpeech}>■ Stop</Button>
+          <Button variant="ghost" className="btn98" onClick={() => { const n = (newsIdx + 1) % RADIO_NEWS.length; if (speaking) speak(n); else setNewsIdx(n); }}>⏭ Next</Button>
+        </div>
+      </Win></div>}
       {loading && <div className="loading-overlay" role="status" aria-live="polite"><Win title="Please wait" className="w-80 max-w-full"><p className="text-sm mb-3">{loading}</p><LoadingText duration={FILE_LOAD_MS} /></Win></div>}
       <div className="win flex justify-between items-center px-2 py-1 text-sm">
         <Button variant="ghost" className="btn98 font-bold !py-0">⊞ Start</Button>
+        <div className="flex gap-2">
         <Button variant="ghost" className="btn98" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))}><RetroIcon kind="mail" small /><span>Mail</span></Button>
+        <Button variant="ghost" className="btn98" onClick={() => load("Loading Performance.exe...", () => setShowGraph(true))}><LineChart /><span>Performance</span></Button>
+        {maxDay >= RADIO_UNLOCK_DAY && <Button variant="ghost" className="btn98" onClick={() => setShowRadio(true)}><Radio /><span>Radio</span></Button>}
+        </div>
         <div className="flex items-center gap-2"><Button variant="ghost" className="btn98" onClick={toggleSound} aria-label={soundOn ? "Turn sound off" : "Turn sound on"} aria-pressed={soundOn} title={soundOn ? "Turn sound off" : "Turn sound on"}>{soundOn ? <Volume2 /> : <VolumeX />}<span className="text-xs">Sound {soundOn ? "on" : "off"}</span></Button>{audioError && <span role="status" className="text-xs">{audioError}</span>}</div>
         <span className="bevel-in px-2">{phase === "working" ? time : "12:00 AM"} · Y2K Ready</span>
       </div>
+    </div>
+  );
+}
+
+function PerformanceGraph({ history }: { history: ShiftRecord[] }) {
+  if (!history.length) return <p className="bevel-in p-3 text-sm">No shifts on record yet. Finish a shift to see your accuracy.</p>;
+  const pts = history.slice(-12);
+  const W = 480, H = 200, pad = 30;
+  const x = (i: number) => pad + (pts.length === 1 ? (W - pad * 2) / 2 : (i * (W - pad * 2)) / (pts.length - 1));
+  const y = (p: number) => H - pad - (p / 100) * (H - pad * 2);
+  const t = trend(history);
+  return (
+    <div className="text-sm">
+      <svg viewBox={`0 0 ${W} ${H}`} className="bevel-in w-full bg-term" role="img" aria-label="Accuracy per shift">
+        {[0, 50, 100].map((g) => <g key={g}><line x1={pad} x2={W - pad} y1={y(g)} y2={y(g)} stroke="currentColor" opacity="0.25" /><text x={4} y={y(g) + 4} fontSize="10" fill="currentColor">{g}%</text></g>)}
+        <polyline fill="none" stroke="currentColor" strokeWidth="2" points={pts.map((r, i) => `${x(i)},${y(percent(r))}`).join(" ")} />
+        {pts.map((r, i) => <g key={i}><rect x={x(i) - 3} y={y(percent(r)) - 3} width="6" height="6" fill="currentColor" /><text x={x(i) - 8} y={H - 10} fontSize="10" fill="currentColor">D{r.day}</text></g>)}
+      </svg>
+      <p className="mt-2 font-bold">{t === null ? "Complete another shift to see your trend." : t > 0 ? `Improved by ${t}% since last shift.` : t < 0 ? `Got worse by ${-t}% since last shift.` : "Same as last shift."}</p>
+      <p className="text-xs">Last shift: {pts.at(-1)?.score}/{pts.at(-1)?.total} correct.</p>
     </div>
   );
 }
