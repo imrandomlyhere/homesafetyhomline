@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { LineChart, Radio, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RetroIcon } from "@/game/retro-icon";
@@ -22,9 +22,28 @@ function LoadingText({ duration }: { duration: number }) {
 }
 
 function Win({ title, children, onClose, className = "" }: { title: string; children: ReactNode; onClose?: () => void; className?: string }) {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const drag = useRef<{ px: number; py: number; bx: number; by: number } | null>(null);
+  const bar = useRef<HTMLDivElement>(null);
+  const onDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0 || (e.target as HTMLElement).closest("button")) return;
+    drag.current = { px: e.clientX, py: e.clientY, bx: pos.x, by: pos.y };
+    bar.current?.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  };
+  const onMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    if (!d) return;
+    setPos({ x: d.bx + (e.clientX - d.px), y: d.by + (e.clientY - d.py) });
+  };
+  const onUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!drag.current) return;
+    drag.current = null;
+    bar.current?.releasePointerCapture(e.pointerId);
+  };
   return (
-    <div className={`win p-[3px] flex flex-col ${className}`}>
-      <div className="titlebar flex items-center justify-between px-2 py-1 text-sm font-bold">
+    <div className={`win p-[3px] flex flex-col ${className}`} style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}>
+      <div ref={bar} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} className="titlebar flex items-center justify-between px-2 py-1 text-sm font-bold cursor-move select-none touch-none">
         <span>{title}</span>
         {onClose && <Button variant="ghost" onClick={onClose} className="btn98 !px-2 !py-0 text-foreground text-xs">✕</Button>}
       </div>
