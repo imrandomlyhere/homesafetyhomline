@@ -162,7 +162,23 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
     }
   }, []);
 
-  useEffect(() => { setShiftCalls(getShiftCalls(day)); }, [day]);
+  const [restored, setRestored] = useState(false);
+  useEffect(() => {
+    if (callerPage) {
+      try {
+        const s = JSON.parse(localStorage.getItem("hsh-shift") || "null");
+        if (s && s.day === day && s.employee === empId && Array.isArray(s.calls) && s.calls.length && s.callIdx < s.calls.length) {
+          setShiftCalls(s.calls); setCallIdx(s.callIdx); setScore(s.score); if (s.time) setTime(s.time);
+          setRestored(true); return;
+        }
+      } catch { localStorage.removeItem("hsh-shift"); }
+    }
+    setShiftCalls(getShiftCalls(day)); setRestored(true);
+  }, [day]);
+  const saveShift = (idx: number, sc: number, t: string) => {
+    if (callerPage) localStorage.setItem("hsh-shift", JSON.stringify({ day, employee: empId, calls: shiftCalls, callIdx: idx, score: sc, time: t }));
+  };
+  useEffect(() => { if (restored && callIdx === 0 && score === 0) saveShift(0, 0, time); }, [restored, shiftCalls]);
 
   const calls = shiftCalls;
   const mailDay = callerPage ? day : maxDay;
@@ -203,8 +219,9 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
       const h2 = [...parseHistory(localStorage.getItem("hsh-history")), { day, score, total: calls.length }];
       localStorage.setItem("hsh-history", JSON.stringify(h2)); setHistory(h2);
       if (day + 1 > maxDay && CALLS[day + 1]) { setMaxDay(day + 1); localStorage.setItem("hsh-maxday", String(day + 1)); }
+      localStorage.removeItem("hsh-shift");
       setPhase("summary");
-    } else { setConnecting(true); setCallIdx(callIdx + 1); }
+    } else { setConnecting(true); setCallIdx(callIdx + 1); saveShift(callIdx + 1, score, `${h > 12 ? h - 12 : h}:00 ${h >= 12 ? "PM" : "AM"}`); }
   };
 
   return (
@@ -332,7 +349,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
       {mailAlert && !showMail && <div className="mail-overlay" role="alertdialog" aria-label="New mail"><Win title="HSH Mail 2000" className="w-full max-w-sm" onClose={() => setMailAlert(false)}><div className="flex items-center gap-3 text-sm"><RetroIcon kind="mail" /><p>You have 1 new message.<br />From: UNKNOWN</p></div><div className="flex justify-end gap-2 mt-3"><Button variant="ghost" className="btn98" onClick={() => { setMailAlert(false); setShowMail(true); }}>Read</Button><Button variant="ghost" className="btn98" onClick={() => setMailAlert(false)}>Later</Button></div></Win></div>}
       {showMail && <div className="mail-overlay" role="dialog" aria-modal="true" aria-label="HSH Mail"><Win title="HSH Mail 2000 — Inbox" className="w-full max-w-2xl max-h-[90vh] overflow-auto" onClose={() => setShowMail(false)}><Mailbox day={mailDay} unlocked={unlockedMail} /></Win></div>}
       {showGraph && <div className="mail-overlay" role="dialog" aria-label="Performance"><Win title="Performance.exe — Shift Accuracy" className="w-full max-w-xl" onClose={() => setShowGraph(false)}><PerformanceGraph history={history} /></Win></div>}
-      {showRadio && <div className="mail-overlay" role="dialog" aria-label="HSH Radio"><Win title="WHSH News Radio 88.1 FM" className="w-full max-w-lg" onClose={() => { stopSpeech(); setShowRadio(false); }}>
+      {showRadio && <div className="fixed right-4 bottom-14 z-40 w-full max-w-lg" role="dialog" aria-label="HSH Radio"><Win title="WHSH News Radio 88.1 FM" className="w-full max-w-lg" onClose={() => { stopSpeech(); setShowRadio(false); }}>
         <div className="bg-term font-term text-lg p-3 h-48 overflow-auto"><p>&gt; {speaking ? "ON AIR" : "STANDBY"} · Bulletin {newsIdx + 1}/{RADIO_NEWS.length}</p><p className="mt-2">{RADIO_NEWS[newsIdx]}</p></div>
         <div className="flex gap-2 mt-3">
           <Button variant="ghost" className="btn98" onClick={() => speak(newsIdx)}>▶ Play</Button>
@@ -346,7 +363,7 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
         <div className="flex gap-2">
         <Button variant="ghost" className="btn98" onClick={() => load("Connecting to HSH Mail...", () => setShowMail(true))}><RetroIcon kind="mail" small /><span>Mail</span></Button>
         <Button variant="ghost" className="btn98" onClick={() => load("Loading Performance.exe...", () => setShowGraph(true))}><LineChart /><span>Performance</span></Button>
-        {maxDay >= RADIO_UNLOCK_DAY && <Button variant="ghost" className="btn98" onClick={() => setShowRadio(true)}><Radio /><span>Radio</span></Button>}
+        {Math.max(maxDay, callerPage ? day : 0) >= RADIO_UNLOCK_DAY && <Button variant="ghost" className="btn98" onClick={() => setShowRadio(true)}><Radio /><span>Radio</span></Button>}
         </div>
         <div className="flex items-center gap-2"><Button variant="ghost" className="btn98" onClick={toggleSound} aria-label={soundOn ? "Turn sound off" : "Turn sound on"} aria-pressed={soundOn} title={soundOn ? "Turn sound off" : "Turn sound on"}>{soundOn ? <Volume2 /> : <VolumeX />}<span className="text-xs">Sound {soundOn ? "on" : "off"}</span></Button>{audioError && <span role="status" className="text-xs">{audioError}</span>}</div>
         <span className="bevel-in px-2">{phase === "working" ? time : "12:00 AM"} · Y2K Ready</span>
