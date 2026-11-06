@@ -16,3 +16,4 @@
 - Shared loading durations and ASCII progression live in src/game/loading.ts so every waiting screen uses the same timing rules.
 - Each shift selects one of three authored variants per scheduled pest on mount; transcripts and symptom replies travel together in src/game/data.ts so follow-ups cannot contradict that caller.
 - Daily scripted mail lives in src/game/mail.ts and the shared inbox in src/game/mailbox.tsx; delivery follows unlocked work days, not external email or network storage.
+- Radio stations and speaker-tagged broadcasts live in src/game/radio.ts; channel changes invalidate old speech callbacks so canceled stations cannot resume.

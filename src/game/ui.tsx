@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
-import { LineChart, Radio, Volume2, VolumeX } from "lucide-react";
+import { LineChart, Radio, Volume2, VolumeX, Play, Square, SkipForward } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RetroIcon } from "@/game/retro-icon";
 import { CALLS, ENTRIES, getCatalog, getShiftCalls, getSymptomQuestions, type Entry } from "@/game/data";
@@ -8,7 +8,7 @@ import { DAY_DATES, getEarnedMail, getMail, getNewEntryCount } from "@/game/mail
 import { Mailbox } from "@/game/mailbox";
 import { FILE_LOAD_MS, CALL_LOAD_MS, QUESTION_LOAD_MS, textProgress } from "@/game/loading";
 import { createRetroAudio, type SoundKind } from "@/game/sounds";
-import { RADIO_NEWS, RADIO_UNLOCK_DAY } from "@/game/radio";
+import { RADIO_CHANNELS, RADIO_UNLOCK_DAY, getRadioChannel } from "@/game/radio";
 import { parseHistory, percent, trend, type ShiftRecord } from "@/game/performance";
 
 function LoadingText({ duration }: { duration: number }) {
@@ -84,20 +84,40 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
   const [history, setHistory] = useState<ShiftRecord[]>([]);
   const [showGraph, setShowGraph] = useState(false);
   const [showRadio, setShowRadio] = useState(false);
+  const [channelId, setChannelId] = useState(1);
   const [newsIdx, setNewsIdx] = useState(0);
   const [speaking, setSpeaking] = useState(false);
-  const stopSpeech = () => { if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); setSpeaking(false); };
-  const speak = (i: number) => {
+  const [speechError, setSpeechError] = useState("");
+  const speechRun = useRef(0);
+  const channel = getRadioChannel(channelId);
+  const stopSpeech = () => { speechRun.current += 1; if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); setSpeaking(false); };
+  const speak = (i: number, stationId = channelId) => {
+    const run = ++speechRun.current;
+    const station = getRadioChannel(stationId);
+    const broadcast = station.broadcasts[i];
     setNewsIdx(i);
-    if (typeof speechSynthesis === "undefined") return;
+    if (typeof speechSynthesis === "undefined" || !broadcast) { setSpeaking(false); setSpeechError("Speech is unavailable in this browser."); return; }
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(RADIO_NEWS[i] ?? "");
-    u.rate = 0.95; u.pitch = 0.8;
-    u.onend = () => { if (i + 1 < RADIO_NEWS.length) speak(i + 1); else setSpeaking(false); };
+    const u = new SpeechSynthesisUtterance(broadcast.text);
+    u.rate = 0.95; u.pitch = broadcast.speaker === "Morgan" ? 0.8 : broadcast.speaker === "Casey" ? 1.1 : 0.8;
+    const voices = speechSynthesis.getVoices().filter((voice) => voice.lang.startsWith("en"));
+    const voice = voices[broadcast.speaker === "Morgan" ? 1 : 0] ?? voices[0];
+    if (voice) u.voice = voice;
+    u.onend = () => { if (run !== speechRun.current) return; if (i + 1 < station.broadcasts.length) speak(i + 1, stationId); else setSpeaking(false); };
+    u.onerror = () => { if (run !== speechRun.current) return; setSpeaking(false); setSpeechError("Speech could not play. You can still read the broadcast."); };
+    setSpeechError("");
     setSpeaking(true);
     speechSynthesis.speak(u);
   };
-  useEffect(() => () => { if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); }, []);
+  const changeChannel = (id: number) => {
+    const wasSpeaking = speaking;
+    stopSpeech();
+    setChannelId(id);
+    setNewsIdx(0);
+    setSpeechError("");
+    if (wasSpeaking) speak(0, id);
+  };
+  useEffect(() => () => { speechRun.current += 1; if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel(); }, []);
   const play = (kind: SoundKind) => { if (soundOn) audio.current?.play(kind); };
   const toggleSound = () => {
     try {
@@ -349,12 +369,17 @@ export function Game({ callerPage = false, initialDay = 1, employee = "" }: { ca
       {mailAlert && !showMail && <div className="mail-overlay" role="alertdialog" aria-label="New mail"><Win title="HSH Mail 2000" className="w-full max-w-sm" onClose={() => setMailAlert(false)}><div className="flex items-center gap-3 text-sm"><RetroIcon kind="mail" /><p>You have 1 new message.<br />From: UNKNOWN</p></div><div className="flex justify-end gap-2 mt-3"><Button variant="ghost" className="btn98" onClick={() => { setMailAlert(false); setShowMail(true); }}>Read</Button><Button variant="ghost" className="btn98" onClick={() => setMailAlert(false)}>Later</Button></div></Win></div>}
       {showMail && <div className="mail-overlay" role="dialog" aria-modal="true" aria-label="HSH Mail"><Win title="HSH Mail 2000 — Inbox" className="w-full max-w-2xl max-h-[90vh] overflow-auto" onClose={() => setShowMail(false)}><Mailbox day={mailDay} unlocked={unlockedMail} /></Win></div>}
       {showGraph && <div className="mail-overlay" role="dialog" aria-label="Performance"><Win title="Performance.exe — Shift Accuracy" className="w-full max-w-xl" onClose={() => setShowGraph(false)}><PerformanceGraph history={history} /></Win></div>}
-      {showRadio && <div className="fixed right-4 bottom-14 z-40 w-full max-w-lg" role="dialog" aria-label="HSH Radio"><Win title="WHSH News Radio 88.1 FM" className="w-full max-w-lg" onClose={() => { stopSpeech(); setShowRadio(false); }}>
-        <div className="bg-term font-term text-lg p-3 h-48 overflow-auto"><p>&gt; {speaking ? "ON AIR" : "STANDBY"} · Bulletin {newsIdx + 1}/{RADIO_NEWS.length}</p><p className="mt-2">{RADIO_NEWS[newsIdx]}</p></div>
+      {showRadio && <div className="fixed right-4 bottom-14 z-40 w-[calc(100%-2rem)] max-w-lg" role="dialog" aria-label="HSH Radio"><Win title={`WHSH Radio — Channel ${channel.id}`} className="w-full max-w-lg" onClose={() => { stopSpeech(); setShowRadio(false); }}>
+        <label htmlFor="radio-channel" className="text-sm font-bold">Channel</label>
+        <select id="radio-channel" className="bevel-in w-full p-2 text-sm mb-3 mt-1" value={channelId} onChange={(event) => changeChannel(Number(event.target.value))}>
+          {RADIO_CHANNELS.map((station) => <option key={station.id} value={station.id}>{station.id}. {station.name}</option>)}
+        </select>
+        <div className="bg-term font-term text-lg p-3 h-48 overflow-auto"><p>&gt; {speaking ? "ON AIR" : "STANDBY"} · {newsIdx + 1}/{channel.broadcasts.length}</p><p className="mt-2">{channel.broadcasts[newsIdx]?.speaker && <strong>{channel.broadcasts[newsIdx]?.speaker}: </strong>}{channel.broadcasts[newsIdx]?.text}</p></div>
+        {speechError && <p role="status" className="text-sm mt-2">{speechError}</p>}
         <div className="flex gap-2 mt-3">
-          <Button variant="ghost" className="btn98" onClick={() => speak(newsIdx)}>▶ Play</Button>
-          <Button variant="ghost" className="btn98" onClick={stopSpeech}>■ Stop</Button>
-          <Button variant="ghost" className="btn98" onClick={() => { const n = (newsIdx + 1) % RADIO_NEWS.length; if (speaking) speak(n); else setNewsIdx(n); }}>⏭ Next</Button>
+          <Button variant="ghost" className="btn98" onClick={() => speak(newsIdx)}><Play /> Play</Button>
+          <Button variant="ghost" className="btn98" onClick={stopSpeech}><Square /> Stop</Button>
+          <Button variant="ghost" className="btn98" onClick={() => { const n = (newsIdx + 1) % channel.broadcasts.length; if (speaking) speak(n); else setNewsIdx(n); }}><SkipForward /> Next</Button>
         </div>
       </Win></div>}
       {loading && <div className="loading-overlay" role="status" aria-live="polite"><Win title="Please wait" className="w-80 max-w-full"><p className="text-sm mb-3">{loading}</p><LoadingText duration={FILE_LOAD_MS} /></Win></div>}
