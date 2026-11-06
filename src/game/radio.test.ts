@@ -15,6 +15,9 @@ describe("radio channels", () => {
   it("features two HSH employees in the podcast", () => {
     expect([...new Set(getRadioChannel(5).broadcasts.map(({ speaker }) => speaker))]).toEqual(["Casey", "Morgan"]);
   });
+  it.each([[1, 7], [2, 4], [3, 5], [4, 5], [5, 8]])("triples channel %i's original %i segments", (id, originalCount) => {
+    expect(getRadioChannel(id).broadcasts).toHaveLength(originalCount * 3);
+  });
   it("keeps radio unlocked on Day 5", () => {
     expect(RADIO_UNLOCK_DAY).toBe(5);
   });
